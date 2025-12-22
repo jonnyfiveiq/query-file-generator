@@ -1,0 +1,24 @@
+namespace: jonnyfiveiq
+name: query_file_generator
+version: 1.0.0
+readme: README.md
+authors:
+  - John
+description: Auto-generate event_query.yml files for AAP Indirect Node Counting
+license:
+  - Apache-2.0
+license_file: LICENSE
+tags:
+  - automation
+  - aap
+  - ansible
+  - query
+  - audit
+  - vmware
+  - azure
+  - indirect_nodes
+dependencies: {}
+repository: https://github.com/jonnyfiveiq/query_file_auto_generator
+documentation: https://github.com/jonnyfiveiq/query_file_auto_generator/blob/main/README.md
+homepage: https://github.com/jonnyfiveiq/query_file_auto_generator
+issues: https://github.com/jonnyfiveiq/query_file_auto_generator/issues

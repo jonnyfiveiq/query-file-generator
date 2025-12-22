@@ -1,0 +1,77 @@
+####
+# Audit queries for vmware.vmware collection
+# Extracts unique resource identifiers for indirect node counting
+####
+
+####
+# VMware Virtual Machine Info
+####
+vmware.vmware.guest_info: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // empty
+
+####
+# VMware Virtual Machine
+####
+vmware.vmware.vm: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // ._moId // empty
+
+####
+# VMware Datastore
+####
+vmware.vmware.datastore: |
+  .event_data.res.datastore_info | select(.!=null) | .url // .name // empty
+
+####
+# VMware ESXi Host
+####
+vmware.vmware.host: |
+  .event_data.res.host_info | select(.!=null) | ._moId // .uuid // empty
+
+####
+# VMware vSphere Cluster
+####
+vmware.vmware.cluster: |
+  .event_data.res.cluster_info | select(.!=null) | ._moId // .cluster // empty
+
+####
+# VMware Distributed vSwitch
+####
+vmware.vmware.dvswitch: |
+  .event_data.res.dvswitch_info | select(.!=null) | .uuid // .dvswitch // empty
+
+####
+# VMware Port Group
+####
+vmware.vmware.portgroup: |
+  .event_data.res.portgroup_info | select(.!=null) | .key // .vlan_id // empty
+
+####
+# VMware vCenter Folder
+####
+vmware.vmware.folder: |
+  .event_data.res.result | select(.!=null) | ._moId // empty
+
+####
+# VMware Resource Pool
+####
+vmware.vmware.resource_pool: |
+  .event_data.res.resource_pool_info | select(.!=null) | ._moId // empty
+
+####
+# VMware Content Library
+####
+vmware.vmware.content_library: |
+  .event_data.res | select(.!=null) | .library_id // empty
+
+####
+# VMware vSAN
+####
+vmware.vmware.cluster_vsan: |
+  .event_data.res.vsan_config | select(.!=null) | .uuid // empty
+
+####
+# Catch all query
+####
+vmware.vmware.*: |
+  .event_data.res | select(.!=null) | .. | objects | select(has("uuid") or has("id") or has("moid") or has("instance_uuid") or has("hw_product_uuid") or has("serial_number") or has("_moId")) | .uuid // .id // .moid // .instance_uuid // .hw_product_uuid // .serial_number // ._moId // empty
+

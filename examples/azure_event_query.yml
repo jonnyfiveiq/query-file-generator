@@ -1,0 +1,71 @@
+####
+# Audit queries for azure.azcollection collection
+# Extracts unique resource identifiers for indirect node counting
+####
+
+####
+# Azure Virtual Machine
+####
+azure.azcollection.azure_rm_virtualmachine: |
+  .event_data.res | select(.!=null) | .id // .ansible_facts.azure_vm.id // .state.id // .properties.vmId // empty
+
+####
+# Azure Storage Account
+####
+azure.azcollection.azure_rm_storageaccount: |
+  .event_data.res | select(.!=null) | .id // .state.id // empty
+
+####
+# Azure Network Interface
+####
+azure.azcollection.azure_rm_networkinterface: |
+  .event_data.res | select(.!=null) | .state.id // .id // .state.mac_address // empty
+
+####
+# Azure Public IP Address
+####
+azure.azcollection.azure_rm_publicipaddress: |
+  .event_data.res | select(.!=null) | .state.id // .state.ip_address // empty
+
+####
+# Azure Virtual Network
+####
+azure.azcollection.azure_rm_virtualnetwork: |
+  .event_data.res | select(.!=null) | .state.id // .id // empty
+
+####
+# Azure Resource Group
+####
+azure.azcollection.azure_rm_resourcegroup: |
+  .event_data.res | select(.!=null) | .id // .state.id // empty
+
+####
+# Azure Managed Disk
+####
+azure.azcollection.azure_rm_manageddisk: |
+  .event_data.res | select(.!=null) | .state.id // .state.unique_id // empty
+
+####
+# Azure Kubernetes Service
+####
+azure.azcollection.azure_rm_aks: |
+  .event_data.res | select(.!=null) | .id // .properties.fqdn // empty
+
+####
+# Azure SQL Database
+####
+azure.azcollection.azure_rm_sqldatabase: |
+  .event_data.res | select(.!=null) | .id // empty
+
+####
+# Azure Load Balancer
+####
+azure.azcollection.azure_rm_loadbalancer: |
+  .event_data.res | select(.!=null) | .state.id // .id // empty
+
+####
+# Catch all query
+####
+azure.azcollection.*: |
+  .event_data.res | select(.!=null) | .. | objects | select(has("uuid") or has("id") or has("moid") or has("instance_uuid") or has("hw_product_uuid") or has("serial_number")) | .uuid // .id // .moid // .instance_uuid // .hw_product_uuid // .serial_number // empty
+

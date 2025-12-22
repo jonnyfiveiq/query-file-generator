@@ -1,0 +1,20 @@
+---
+- name: Generate audit query file for Azure collection
+  hosts: localhost
+  gather_facts: false
+  
+  tasks:
+    - name: Generate query file for Azure collection
+      jonnyfiveiq.query_file_generator.generate_query_file:
+        collection_source: "https://github.com/ansible-collections/azure"
+        collection_name: "azure.azcollection"
+        output_path: "./azure_azcollection_event_query.yml"
+      register: result
+    
+    - name: Display results
+      ansible.builtin.debug:
+        msg: |
+          Generated: {{ result.query_file_path }}
+          Modules analyzed: {{ result.modules_analyzed }}
+          Successfully parsed: {{ result.successful_parses | default('N/A') }}
+          Collection: {{ result.collection_info.name }}

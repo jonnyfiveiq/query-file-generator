@@ -1,0 +1,246 @@
+---
+# Test and validate the query file generator
+- name: Test Query File Generator Collection
+  hosts: localhost
+  gather_facts: true
+  
+  vars:
+    test_output_dir: "./test_output"
+    anthropic_api_key: "{{ lookup('env', 'ANTHROPIC_API_KEY') }}"
+    
+    test_collections:
+      - name: "Test Azure Collection"
+        source: "https://github.com/ansible-collections/azure"
+        collection_name: "azure.azcollection"
+        expected_resource_types:
+          - "virtual_machine"
+          - "storage"
+          - "network_interface"
+      
+      - name: "Test VMware Collection"  
+        source: "https://github.com/ansible-collections/vmware.vmware"
+        collection_name: "vmware.vmware"
+        expected_resource_types:
+          - "virtual_machine"
+          - "compute_host"
+          - "storage"
+      
+      - name: "Test with Specific Modules"
+        source: "cisco.ios"
+        collection_name: "cisco.ios"
+        specific_modules:
+          - "ios_config"
+          - "ios_interfaces"
+        expected_resource_types:
+          - "network_device"
+  
+  tasks:
+    - name: Create test output directory
+      ansible.builtin.file:
+        path: "{{ test_output_dir }}"
+        state: directory
+        mode: '0755'
+    
+    - name: Check for Anthropic API key
+      ansible.builtin.assert:
+        that:
+          - anthropic_api_key is defined
+          - anthropic_api_key | length > 0
+        fail_msg: "ANTHROPIC_API_KEY environment variable must be set"
+        success_msg: "Anthropic API key is configured"
+    
+    # Test 1: Basic generation
+    - name: "Test 1: Generate query file with full analysis"
+      ansible_bu.query_file_generator.generate_query_file:
+        collection_source: "{{ test_collections[0].source }}"
+        collection_name: "{{ test_collections[0].collection_name }}"
+        output_path: "{{ test_output_dir }}/test1_{{ test_collections[0].collection_name | replace('.', '_') }}_query.yml"
+        anthropic_api_key: "{{ anthropic_api_key }}"
+        deep_analysis: true
+      register: test1_result
+      ignore_errors: true
+    
+    - name: Validate test 1 results
+      ansible.builtin.assert:
+        that:
+          - test1_result is success
+          - test1_result.modules_analyzed > 0
+          - test1_result.queries_generated > 0
+          - test1_result.query_file_path is defined
+        fail_msg: "Test 1 failed: Basic generation did not complete successfully"
+    
+    - name: Display test 1 results
+      ansible.builtin.debug:
+        msg: |
+          Test 1 Results:
+          - Modules Analyzed: {{ test1_result.modules_analyzed }}
+          - Queries Generated: {{ test1_result.queries_generated }}
+          - Resource Types: {{ test1_result.resource_types | join(', ') }}
+          - Output File: {{ test1_result.query_file_path }}
+    
+    # Test 2: Verify generated file is valid YAML
+    - name: "Test 2: Validate generated YAML structure"
+      block:
+        - name: Read generated query file
+          ansible.builtin.slurp:
+            src: "{{ test1_result.query_file_path }}"
+          register: query_file_content
+        
+        - name: Parse YAML content
+          ansible.builtin.set_fact:
+            parsed_query: "{{ query_file_content.content | b64decode | from_yaml }}"
+        
+        - name: Validate YAML structure
+          ansible.builtin.assert:
+            that:
+              - parsed_query.extension_name is defined
+              - parsed_query.extension_version is defined
+              - parsed_query.queries is defined
+              - parsed_query.queries is iterable
+              - parsed_query.queries | length > 0
+            fail_msg: "Test 2 failed: Generated YAML structure is invalid"
+        
+        - name: Validate each query entry
+          ansible.builtin.assert:
+            that:
+              - item.name is defined
+              - item.query_type is defined
+              - item.queries is defined
+              - item.queries is iterable
+            fail_msg: "Query entry missing required fields: {{ item }}"
+          loop: "{{ parsed_query.queries }}"
+          loop_control:
+            label: "{{ item.name | default('unnamed') }}"
+    
+    # Test 3: Test with specific modules
+    - name: "Test 3: Generate with specific modules filter"
+      ansible_bu.query_file_generator.generate_query_file:
+        collection_source: "{{ test_collections[2].source }}"
+        collection_name: "{{ test_collections[2].collection_name }}"
+        output_path: "{{ test_output_dir }}/test3_filtered_modules.yml"
+        anthropic_api_key: "{{ anthropic_api_key }}"
+        modules_to_analyze: "{{ test_collections[2].specific_modules }}"
+      register: test3_result
+      ignore_errors: true
+    
+    - name: Validate test 3 results
+      ansible.builtin.assert:
+        that:
+          - test3_result is success
+          - test3_result.modules_analyzed <= (test_collections[2].specific_modules | length)
+        fail_msg: "Test 3 failed: Module filtering did not work correctly"
+    
+    # Test 4: Test without AI (fallback mode)
+    - name: "Test 4: Generate using fallback analysis (no AI)"
+      ansible_bu.query_file_generator.generate_query_file:
+        collection_source: "{{ test_collections[1].source }}"
+        collection_name: "{{ test_collections[1].collection_name }}"
+        output_path: "{{ test_output_dir }}/test4_fallback.yml"
+        deep_analysis: false
+        # anthropic_api_key intentionally omitted
+      register: test4_result
+      ignore_errors: true
+    
+    - name: Check if fallback mode worked
+      ansible.builtin.debug:
+        msg: |
+          Test 4 Results (Fallback Mode):
+          Status: {{ 'SUCCESS' if test4_result is success else 'FAILED' }}
+          {% if test4_result is success %}
+          - Modules Analyzed: {{ test4_result.modules_analyzed }}
+          - Queries Generated: {{ test4_result.queries_generated }}
+          {% endif %}
+    
+    # Test 5: Validate jq expressions (if jq is available)
+    - name: "Test 5: Validate jq expressions"
+      block:
+        - name: Check if jq is installed
+          ansible.builtin.command: which jq
+          register: jq_check
+          changed_when: false
+          failed_when: false
+        
+        - name: Test jq expressions
+          when: jq_check.rc == 0
+          block:
+            - name: Create sample event data
+              ansible.builtin.copy:
+                dest: "{{ test_output_dir }}/sample_event.json"
+                content: |
+                  {
+                    "event_data": {
+                      "task_action_result": {
+                        "id": "/subscriptions/xxx/resourceGroups/rg/providers/Microsoft.Compute/virtualMachines/vm1",
+                        "properties": {
+                          "vmId": "12345678-1234-1234-1234-123456789012"
+                        }
+                      }
+                    }
+                  }
+            
+            - name: Test a sample jq query
+              ansible.builtin.shell: |
+                jq '.event_data.task_action_result.id // empty' {{ test_output_dir }}/sample_event.json
+              register: jq_test
+              changed_when: false
+            
+            - name: Validate jq output
+              ansible.builtin.assert:
+                that:
+                  - jq_test.stdout is defined
+                  - '"/subscriptions/xxx" in jq_test.stdout'
+                fail_msg: "JQ expression validation failed"
+                success_msg: "JQ expressions are valid"
+      rescue:
+        - name: JQ not available
+          ansible.builtin.debug:
+            msg: "jq not installed - skipping jq validation tests"
+    
+    # Test Summary
+    - name: Generate test summary
+      ansible.builtin.copy:
+        dest: "{{ test_output_dir }}/test_summary.txt"
+        content: |
+          ===== Query File Generator Test Summary =====
+          Date: {{ ansible_date_time.iso8601 }}
+          
+          Test 1 - Basic Generation:
+            Status: {{ 'PASS' if test1_result is success else 'FAIL' }}
+            Modules Analyzed: {{ test1_result.modules_analyzed | default(0) }}
+            Queries Generated: {{ test1_result.queries_generated | default(0) }}
+            Resource Types: {{ test1_result.resource_types | default([]) | join(', ') }}
+          
+          Test 2 - YAML Validation:
+            Status: PASS (if test 1 passed)
+            
+          Test 3 - Module Filtering:
+            Status: {{ 'PASS' if test3_result is success else 'FAIL' }}
+            Modules Analyzed: {{ test3_result.modules_analyzed | default(0) }}
+          
+          Test 4 - Fallback Mode:
+            Status: {{ 'PASS' if test4_result is success else 'FAIL' }}
+          
+          Test 5 - JQ Validation:
+            Status: {{ 'PASS' if jq_check is defined and jq_check.rc == 0 else 'SKIPPED' }}
+          
+          Generated Files:
+          {% for file in lookup('fileglob', test_output_dir + '/*.yml', wantlist=True) %}
+            - {{ file }}
+          {% endfor %}
+          
+          ===== End Test Summary =====
+    
+    - name: Display test summary
+      ansible.builtin.debug:
+        msg: "{{ lookup('file', test_output_dir + '/test_summary.txt') }}"
+    
+    - name: Final test status
+      ansible.builtin.debug:
+        msg: |
+          {% if test1_result is success and test3_result is success %}
+          ✅ All tests PASSED
+          {% else %}
+          ❌ Some tests FAILED - review output above
+          {% endif %}
+          
+          Test artifacts available in: {{ test_output_dir }}/

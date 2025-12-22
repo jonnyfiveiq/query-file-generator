@@ -1,0 +1,24 @@
+---
+- name: Generate query file from locally installed collection
+  hosts: localhost
+  gather_facts: false
+  
+  vars:
+    collection_path: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/vmware/vmware"
+    collection_name: "vmware.vmware"
+    output_file: "./local_event_query.yml"
+  
+  tasks:
+    - name: Generate query file from local collection
+      jonnyfiveiq.query_file_generator.generate_query_file:
+        collection_source: "{{ collection_path }}"
+        collection_name: "{{ collection_name }}"
+        output_path: "{{ output_file }}"
+      register: result
+    
+    - name: Display results
+      ansible.builtin.debug:
+        msg: |
+          Generated: {{ result.query_file_path }}
+          Modules analyzed: {{ result.modules_analyzed }}
+          Successfully parsed: {{ result.successful_parses | default('N/A') }}

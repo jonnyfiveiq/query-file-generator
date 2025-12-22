@@ -1,0 +1,143 @@
+####
+# Audit queries for vmware.vmware collection
+# Extracts unique resource identifiers for indirect node counting
+# Each module is explicitly defined with its specific query
+####
+
+####
+# VMware VM guest information gathering
+####
+vmware.vmware.guest_info: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // empty
+
+####
+# VMware VM management and operations
+####
+vmware.vmware.vm: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // ._moId // empty
+
+####
+# VMware guest operations
+####
+vmware.vmware.vmware_guest: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // empty
+
+####
+# VMware guest facts gathering
+####
+vmware.vmware.vmware_guest_info: |
+  .event_data.res.instance | select(.!=null) | .hw_product_uuid // .instance_uuid // empty
+
+####
+# VMware datastore information
+####
+vmware.vmware.datastore_info: |
+  .event_data.res | select(.!=null) | .datastores[].url // .datastores[].name // empty
+
+####
+# VMware datastore management
+####
+vmware.vmware.datastore: |
+  .event_data.res.datastore_info | select(.!=null) | .url // .name // empty
+
+####
+# VMware ESXi host information
+####
+vmware.vmware.host_info: |
+  .event_data.res.hosts[] | select(.!=null) | .config.host.uuid // .hardware.systemInfo.uuid // empty
+
+####
+# VMware ESXi host management
+####
+vmware.vmware.host: |
+  .event_data.res.host_info | select(.!=null) | ._moId // .uuid // empty
+
+####
+# VMware cluster information
+####
+vmware.vmware.cluster_info: |
+  .event_data.res.clusters[] | select(.!=null) | ._moId // .name // empty
+
+####
+# VMware cluster management
+####
+vmware.vmware.cluster: |
+  .event_data.res.cluster_info | select(.!=null) | ._moId // empty
+
+####
+# VMware distributed vSwitch information
+####
+vmware.vmware.dvswitch_info: |
+  .event_data.res.distributed_virtual_switches[] | select(.!=null) | .uuid // .name // empty
+
+####
+# VMware distributed vSwitch management
+####
+vmware.vmware.dvswitch: |
+  .event_data.res.dvswitch_info | select(.!=null) | .uuid // empty
+
+####
+# VMware port group information
+####
+vmware.vmware.portgroup_info: |
+  .event_data.res.port_groups[] | select(.!=null) | .key // .vlan_id // empty
+
+####
+# VMware port group management
+####
+vmware.vmware.portgroup: |
+  .event_data.res.portgroup_info | select(.!=null) | .key // empty
+
+####
+# VMware datacenter information
+####
+vmware.vmware.datacenter_info: |
+  .event_data.res.datacenters[] | select(.!=null) | ._moId // .name // empty
+
+####
+# VMware datacenter management
+####
+vmware.vmware.datacenter: |
+  .event_data.res.datacenter_info | select(.!=null) | ._moId // empty
+
+####
+# VMware folder information
+####
+vmware.vmware.folder_info: |
+  .event_data.res.folders[] | select(.!=null) | ._moId // empty
+
+####
+# VMware folder management
+####
+vmware.vmware.folder: |
+  .event_data.res.result | select(.!=null) | ._moId // empty
+
+####
+# VMware resource pool information
+####
+vmware.vmware.resource_pool_info: |
+  .event_data.res.resource_pools[] | select(.!=null) | ._moId // .name // empty
+
+####
+# VMware resource pool management
+####
+vmware.vmware.resource_pool: |
+  .event_data.res.resource_pool_info | select(.!=null) | ._moId // empty
+
+####
+# VMware content library information
+####
+vmware.vmware.content_library_info: |
+  .event_data.res.content_libraries[] | select(.!=null) | .id // .name // empty
+
+####
+# VMware content library management
+####
+vmware.vmware.content_library: |
+  .event_data.res | select(.!=null) | .library_id // empty
+
+####
+# VMware vSAN cluster configuration
+####
+vmware.vmware.cluster_vsan: |
+  .event_data.res.vsan_config | select(.!=null) | .uuid // empty

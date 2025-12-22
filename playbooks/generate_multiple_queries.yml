@@ -1,0 +1,96 @@
+---
+- name: Generate audit query files for multiple collections
+  hosts: localhost
+  gather_facts: false
+  
+  vars:
+    anthropic_api_key: "{{ lookup('env', 'ANTHROPIC_API_KEY') }}"
+    output_directory: "./generated_queries"
+    
+    collections_to_analyze:
+      - source: "https://github.com/ansible-collections/azure"
+        name: "azure.azcollection"
+        description: "Azure cloud resources"
+      
+      - source: "https://github.com/ansible-collections/amazon.aws"
+        name: "amazon.aws"
+        description: "AWS cloud resources"
+      
+      - source: "https://github.com/ansible-collections/vmware.vmware"
+        name: "vmware.vmware"
+        description: "VMware vSphere infrastructure"
+      
+      - source: "cisco.ios"
+        name: "cisco.ios"
+        description: "Cisco IOS network devices"
+        specific_modules:
+          - ios_config
+          - ios_interfaces
+          - ios_vlans
+          - ios_l3_interfaces
+      
+      - source: "cisco.nxos"
+        name: "cisco.nxos"
+        description: "Cisco NX-OS network devices"
+  
+  tasks:
+    - name: Create output directory
+      ansible.builtin.file:
+        path: "{{ output_directory }}"
+        state: directory
+        mode: '0755'
+    
+    - name: Generate query files for each collection
+      ansible_bu.query_file_generator.generate_query_file:
+        collection_source: "{{ item.source }}"
+        collection_name: "{{ item.name }}"
+        output_path: "{{ output_directory }}/{{ item.name | replace('.', '_') }}_event_query.yml"
+        anthropic_api_key: "{{ anthropic_api_key }}"
+        modules_to_analyze: "{{ item.specific_modules | default(omit) }}"
+      loop: "{{ collections_to_analyze }}"
+      loop_control:
+        label: "{{ item.name }}"
+      register: query_results
+    
+    - name: Summarize all generated query files
+      ansible.builtin.debug:
+        msg: |
+          ===== Query File Generation Summary =====
+          Total collections processed: {{ query_results.results | length }}
+          
+          {% for result in query_results.results %}
+          Collection: {{ result.item.name }}
+          Description: {{ result.item.description }}
+          Modules analyzed: {{ result.modules_analyzed }}
+          Queries generated: {{ result.queries_generated }}
+          Resource types: {{ result.resource_types | join(', ') }}
+          Output: {{ result.query_file_path }}
+          ---
+          {% endfor %}
+    
+    - name: Create master index file
+      ansible.builtin.template:
+        dest: "{{ output_directory }}/INDEX.md"
+        content: |
+          # Generated Audit Query Files
+          
+          Generated on: {{ ansible_date_time.iso8601 }}
+          
+          ## Collections Analyzed
+          
+          {% for result in query_results.results %}
+          ### {{ result.item.name }}
+          
+          - **Description**: {{ result.item.description }}
+          - **Modules Analyzed**: {{ result.modules_analyzed }}
+          - **Queries Generated**: {{ result.queries_generated }}
+          - **Resource Types**: {{ result.resource_types | join(', ') }}
+          - **Query File**: `{{ result.query_file_path | basename }}`
+          
+          {% endfor %}
+          
+          ## Usage
+          
+          Copy the generated query files to your Ansible collection's 
+          `extensions/audit/` directory to enable indirect node counting
+          in Ansible Automation Platform Controller.

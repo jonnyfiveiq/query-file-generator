@@ -1,0 +1,83 @@
+####
+# Audit queries for cisco.ios collection
+# Extracts unique resource identifiers for indirect node counting
+####
+
+####
+# Cisco IOS Device Facts
+####
+cisco.ios.ios_facts: |
+  .event_data.res.ansible_facts | select(.!=null) | .ansible_net_serialnum // .ansible_net_serial // .ansible_net_stacked_serialnums[0] // empty
+
+####
+# Cisco IOS Interfaces
+####
+cisco.ios.ios_interfaces: |
+  .event_data.host // .event_data.res.device_serial // empty
+
+####
+# Cisco IOS L2 Interfaces
+####
+cisco.ios.ios_l2_interfaces: |
+  .event_data.host // empty
+
+####
+# Cisco IOS L3 Interfaces
+####
+cisco.ios.ios_l3_interfaces: |
+  .event_data.host // empty
+
+####
+# Cisco IOS VLANs
+####
+cisco.ios.ios_vlans: |
+  .event_data.host // empty
+
+####
+# Cisco IOS Configuration
+####
+cisco.ios.ios_config: |
+  .event_data.host // empty
+
+####
+# Cisco IOS BGP
+####
+cisco.ios.ios_bgp: |
+  .event_data.res | select(.!=null) | .bgp_router_id // .event_data.host // empty
+
+####
+# Cisco IOS ACLs
+####
+cisco.ios.ios_acls: |
+  .event_data.host // empty
+
+####
+# Cisco IOS OSPF
+####
+cisco.ios.ios_ospf: |
+  .event_data.res | select(.!=null) | .router_id // .event_data.host // empty
+
+####
+# Cisco IOS Static Routes
+####
+cisco.ios.ios_static_routes: |
+  .event_data.host // empty
+
+####
+# Cisco IOS LAG Interfaces
+####
+cisco.ios.ios_lag_interfaces: |
+  .event_data.host // empty
+
+####
+# Cisco IOS LLDP
+####
+cisco.ios.ios_lldp: |
+  .event_data.res.ansible_facts.lldp | select(.!=null) | .device_id // .chassis_id // empty
+
+####
+# Catch all query
+####
+cisco.ios.*: |
+  .event_data.res | select(.!=null) | .. | objects | select(has("uuid") or has("id") or has("moid") or has("instance_uuid") or has("hw_product_uuid") or has("serial_number") or has("ansible_net_serialnum")) | .uuid // .id // .moid // .instance_uuid // .hw_product_uuid // .serial_number // .ansible_net_serialnum // .event_data.host // empty
+

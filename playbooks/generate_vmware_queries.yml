@@ -1,0 +1,20 @@
+---
+- name: Generate audit query file for VMware collection
+  hosts: localhost
+  gather_facts: false
+  
+  tasks:
+    - name: Generate query file for VMware collection
+      jonnyfiveiq.query_file_generator.generate_query_file:
+        collection_source: "https://github.com/ansible-collections/vmware.vmware"
+        collection_name: "vmware.vmware"
+        output_path: "./vmware_vmware_event_query.yml"
+      register: result
+    
+    - name: Display results
+      ansible.builtin.debug:
+        msg: |
+          Generated: {{ result.query_file_path }}
+          Modules analyzed: {{ result.modules_analyzed }}
+          Successfully parsed: {{ result.successful_parses | default('N/A') }}
+          Collection: {{ result.collection_info.name }}

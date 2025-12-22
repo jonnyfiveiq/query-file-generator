@@ -1,0 +1,35 @@
+---
+- name: Debug VMware query generation
+  hosts: localhost
+  gather_facts: false
+  
+  tasks:
+    - name: Generate with verbose output
+      ansible_bu.query_file_generator.generate_query_file:
+        collection_source: "https://github.com/ansible-collections/vmware.vmware"
+        collection_name: "vmware.vmware"
+        output_path: "./debug_vmware_query.yml"
+      register: result
+      
+    - name: Show full result
+      ansible.builtin.debug:
+        var: result
+    
+    - name: Check if file was created
+      ansible.builtin.stat:
+        path: "./debug_vmware_query.yml"
+      register: file_stat
+    
+    - name: Show file info
+      ansible.builtin.debug:
+        msg: "File exists: {{ file_stat.stat.exists }}, Size: {{ file_stat.stat.size | default(0) }} bytes"
+    
+    - name: Show file content
+      ansible.builtin.command: cat ./debug_vmware_query.yml
+      register: file_content
+      when: file_stat.stat.exists
+    
+    - name: Display file content
+      ansible.builtin.debug:
+        msg: "{{ file_content.stdout_lines }}"
+      when: file_stat.stat.exists
