@@ -97,7 +97,6 @@ vmware.vmware.cluster:
     .cluster | select(. != null) | {
       name: .moid,
       canonical_facts: {
-        name: .name,
         moid: .moid
       },
       facts: {
@@ -112,10 +111,7 @@ vmware.vmware.guest_info:
     .guests[] | {
       name: .moid,
       canonical_facts: {
-        name: .name,
-        moid: .moid,
-        instance_uuid: .instance_uuid,
-        bios_uuid: .hw_product_uuid
+        moid: .moid
       },
       facts: {
         infra_type: "PrivateCloud",
@@ -129,7 +125,6 @@ vmware.vmware.vm:
     .vm | select(. != null) | {
       name: .moid,
       canonical_facts: {
-        name: .name,
         moid: .moid
       },
       facts: {
@@ -142,11 +137,13 @@ vmware.vmware.vm:
 # ... additional modules
 ```
 
+**Note**: The generator uses a **single identifier** in `canonical_facts` (e.g., `moid` for VMware). This is critical for proper deduplication when multiple modules interact with the same resource in a job.
+
 ## Integrating with a Collection
 
 The generated `event_query.yml` file must be placed in the collection's `extensions/audit/` directory.
 
-### Option 1: Fork and Modify
+### Step 1: Fork and Modify
 
 1. Fork the target collection (e.g., `vmware.vmware`)
 2. Add the generated file:
@@ -156,7 +153,7 @@ The generated `event_query.yml` file must be placed in the collection's `extensi
    ```
 3. Commit and push to your fork
 
-### Option 2: Use Git-based Collection in AAP
+### Step 2: Use Git-based Collection in AAP
 
 Configure your AAP project to use a forked collection with the query file:
 
@@ -235,11 +232,45 @@ SELECT * FROM main_indirectmanagednodeaudit;
 
 Example output:
 ```
-  id   |            created            |   name   |              canonical_facts               |                        facts                         |             events              | count | job_id | organization_id 
--------+-------------------------------+----------+--------------------------------------------+------------------------------------------------------+---------------------------------+-------+--------+-----------------
- 13402 | 2025-12-22 10:03:15.670548+00 | vm-10413 | {"moid": "vm-10413", "name": "deletemeVM"} | {"infra_type": "myCloud", "device_type": "VM", ...}  | ["vmware.vmware.vm_powerstate"] |     1 |  16687 |               1
- 13403 | 2025-12-22 10:05:36.095925+00 | vm-10414 | {"moid": "vm-10414", "name": "deletemeVM"} | {"infra_type": "myCloud", "device_type": "VM", ...}  | ["vmware.vmware.vm_powerstate"] |     1 |  16689 |               1
+  id   |            created            |   name   |   canonical_facts    |                                     facts                                      |                                            events                                            | count | job_id | organization_id 
+-------+-------------------------------+----------+----------------------+--------------------------------------------------------------------------------+----------------------------------------------------------------------------------------------+-------+--------+-----------------
+ 13444 | 2025-12-22 16:29:14.052044+00 | vm-10440 | {"moid": "vm-10440"} | {"infra_type": "PrivateCloud", "device_type": "VM", "infra_bucket": "Compute"} | ["community.vmware.vmware_guest", "vmware.vmware.vm_powerstate", "vmware.vmware.guest_info"] |     3 |  16747 |               1
 ```
+
+### Understanding the Results
+
+The `main_indirectmanagednodeaudit` table aggregates all module interactions with a resource into a **single record per job**:
+
+| Column | Description |
+|--------|-------------|
+| `name` | Primary identifier (e.g., VM moid) |
+| `canonical_facts` | Single identifier used for deduplication |
+| `facts` | Resource metadata (infra_type, device_type, infra_bucket) |
+| `events` | **Array of all modules that touched this resource** |
+| `count` | **Total number of module interactions** |
+| `job_id` | The job that performed the automation |
+
+**Key Insight**: In the example above, VM `vm-10440` was touched by **3 different modules** in a single job:
+1. `community.vmware.vmware_guest` - Created the VM
+2. `vmware.vmware.vm_powerstate` - Changed power state  
+3. `vmware.vmware.guest_info` - Gathered VM information
+
+Despite 3 module calls, this counts as **1 indirect managed node** because it's the same VM. The `events` array tracks which modules interacted with it, and `count` shows the total interactions.
+
+### How Deduplication Works
+
+AWX deduplicates records using `canonical_facts`. This generator uses a **single primary identifier** (e.g., `moid` for VMware) to ensure proper deduplication when multiple modules from different collections touch the same resource:
+
+```yaml
+# Both collections use the same identifier structure:
+vmware.vmware.vm_powerstate:
+  canonical_facts: { moid: .moid }
+
+community.vmware.vmware_guest:
+  canonical_facts: { moid: .moid }
+```
+
+This ensures that `vm-10440` from `vmware.vmware` and `vm-10440` from `community.vmware` are recognized as the **same node** and aggregated together.
 
 ### 6. Check Job Event Data (Debugging)
 
@@ -264,11 +295,22 @@ LIMIT 5;
    - Lists: `.container[]` (iterate)
    - Dicts: `.container | select(. != null)` (access)
 
-3. **Finds Identifiers**: Searches for unique identifier fields (moid, uuid, instance_id, arn, etc.) in both the RETURN schema and sample data.
+3. **Finds Primary Identifier**: Searches for the highest-priority unique identifier field using this order:
+   - `moid` (VMware)
+   - `instance_uuid`
+   - `hw_product_uuid` → mapped to `bios_uuid`
+   - `uuid`
+   - `arn` (AWS)
+   - `resource_id`
+   - `id`
+   - `serial`
+   - `name` (fallback)
 
-4. **Generates jq Queries**: Creates structured queries that extract:
-   - `name`: Unique identifier for the node
-   - `canonical_facts`: Key identifying attributes
+4. **Uses Single Identifier**: Only ONE identifier is used in `canonical_facts` to ensure consistent deduplication across modules. This prevents duplicate key errors when multiple modules touch the same resource.
+
+5. **Generates jq Queries**: Creates structured queries that extract:
+   - `name`: Primary identifier for the node
+   - `canonical_facts`: Single identifying attribute for deduplication
    - `facts`: Metadata about the infrastructure type
 
 ## Supported Collections
