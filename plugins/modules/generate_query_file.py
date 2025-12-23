@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- jonnyfiveiq
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
@@ -317,6 +317,93 @@ def find_identifiers(yaml_data, path=""):
     return identifiers
 
 
+def infer_azure_container(module_name):
+    """
+    Infer container name and type for Azure modules based on naming conventions.
+    
+    Azure modules follow patterns:
+    - azure_rm_<resource>_info → returns .<resources>[] (list of items)
+    - azure_rm_<resource> (action) → returns .state (single item)
+    
+    Returns: (container_name, container_type) or (None, None) if not inferrable
+    """
+    if not module_name.startswith('azure_rm_'):
+        return None, None
+    
+    # Extract resource name from module
+    # e.g., azure_rm_resourcegroup_info → resourcegroup
+    # e.g., azure_rm_virtualmachine_info → virtualmachine
+    base_name = module_name[len('azure_rm_'):]  # Remove 'azure_rm_' prefix
+    
+    is_info_module = base_name.endswith('_info')
+    
+    if is_info_module:
+        # Remove '_info' suffix
+        resource_name = base_name[:-5]  # Remove '_info'
+        
+        # Common Azure container name patterns (pluralization)
+        # Many Azure info modules return a list with a pluralized container name
+        container_mappings = {
+            'resourcegroup': 'resourcegroups',
+            'subscription': 'subscriptions',
+            'virtualmachine': 'vms',
+            'storageaccount': 'azure_storageaccounts',
+            'virtualnetwork': 'azure_virtualnetworks',
+            'securitygroup': 'securitygroups',
+            'publicipaddress': 'azure_publicipaddresses',
+            'loadbalancer': 'loadbalancers',
+            'aks': 'azure_aks',
+            'keyvault': 'keyvaults',
+            'functionapp': 'azure_functionapps',
+            'webapp': 'webapps',
+            'dnszone': 'azure_dnszones',
+            'dnsrecordset': 'azure_dnsrecordset',
+            'privatednszone': 'azure_privatednszones',
+            'manageddisk': 'azure_managed_disk',
+            'image': 'images',
+            'gallery': 'galleries',
+            'snapshot': 'snapshots',
+            'vmss': 'vmss',
+            'virtualmachinescaleset': 'vmss',
+            'hostgroup': 'hostgroups',
+            'appgateway': 'gateways',
+            'cosmosdbaccount': 'cosmosdbaccounts',
+            'containerinstance': 'container_groups',
+            'containerregistry': 'registries',
+            'automationaccount': 'automationaccounts',
+            'monitoractiongroups': 'actiongroups',
+            'monitoractivitylogalerts': 'activitylogalerts',
+            'monitormetricalerts': 'metricalerts',
+            'managementgroup': 'management_groups',
+            'trafficmanagerprofile': 'tms',
+            'mariadbserver': 'servers',
+            'mysqlserver': 'servers',
+            'mysqlflexibleserver': 'servers',
+            'postgresqlserver': 'servers',
+            'postgresqlflexibleserver': 'servers',
+            'sqlserver': 'servers',
+            'firewallpolicy': 'firewallpolicies',
+            'ipgroup': 'ipgroups',
+            'natgateway': 'gateways',
+            'proximityplacementgroup': 'proximityplacementgroups',
+            'diskencryptionset': 'diskencryptionsets',
+            'adserviceprincipal': 'service_principals',
+            'autoscale': 'autoscales',
+        }
+        
+        # Try exact match first
+        if resource_name in container_mappings:
+            return container_mappings[resource_name], 'list'
+        
+        # Generic fallback: try common pluralization patterns
+        # Add 's' for simple pluralization
+        container_name = resource_name + 's'
+        return container_name, 'list'
+    else:
+        # Action module - returns under .state
+        return 'state', 'dict'
+
+
 def analyze_module(module_name, content):
     """Analyze single module"""
     debug(f"\n=== {module_name} ===")
@@ -325,6 +412,16 @@ def analyze_module(module_name, content):
     
     if not return_text:
         debug("  No RETURN section")
+        # For Azure modules without RETURN, try to infer container
+        inferred_container, inferred_type = infer_azure_container(module_name)
+        if inferred_container:
+            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
+            return {
+                'module_name': module_name,
+                'identifiers': [{'path': 'id', 'name': 'id'}],
+                'container_info': {'name': inferred_container, 'type': inferred_type},
+                'fallback': True
+            }
         return {
             'module_name': module_name,
             'identifiers': [{'path': 'id', 'name': 'id'}],
@@ -338,6 +435,16 @@ def analyze_module(module_name, content):
         yaml_data = yaml.safe_load(return_text)
         if not yaml_data or not isinstance(yaml_data, dict):
             debug("  Invalid RETURN YAML")
+            # For Azure modules with invalid RETURN, try to infer container
+            inferred_container, inferred_type = infer_azure_container(module_name)
+            if inferred_container:
+                debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
+                return {
+                    'module_name': module_name,
+                    'identifiers': [{'path': 'id', 'name': 'id'}],
+                    'container_info': {'name': inferred_container, 'type': inferred_type},
+                    'fallback': True
+                }
             return {
                 'module_name': module_name,
                 'identifiers': [{'path': 'id', 'name': 'id'}],
@@ -346,6 +453,16 @@ def analyze_module(module_name, content):
             }
     except Exception as e:
         debug(f"  YAML error: {e}")
+        # For Azure modules with YAML errors, try to infer container
+        inferred_container, inferred_type = infer_azure_container(module_name)
+        if inferred_container:
+            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
+            return {
+                'module_name': module_name,
+                'identifiers': [{'path': 'id', 'name': 'id'}],
+                'container_info': {'name': inferred_container, 'type': inferred_type},
+                'fallback': True
+            }
         return {
             'module_name': module_name,
             'identifiers': [{'path': 'id', 'name': 'id'}],
@@ -353,7 +470,7 @@ def analyze_module(module_name, content):
             'fallback': True
         }
     
-    # Find the primary container and its type
+    # Find the primary container and its type from RETURN doc
     container_info = {}
     for key, value in yaml_data.items():
         if isinstance(value, dict):
@@ -364,8 +481,18 @@ def analyze_module(module_name, content):
                     'name': key,
                     'type': container_type
                 }
-                debug(f"  Container: {key} (type={container_type})")
+                debug(f"  Container from RETURN: {key} (type={container_type})")
                 break
+    
+    # If no container found from RETURN doc, try to infer from module name
+    if not container_info:
+        inferred_container, inferred_type = infer_azure_container(module_name)
+        if inferred_container:
+            container_info = {
+                'name': inferred_container,
+                'type': inferred_type
+            }
+            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
     
     identifiers = find_identifiers(yaml_data)
     debug(f"  Found {len(identifiers)} identifiers: {[i['path'] for i in identifiers]}")
@@ -421,7 +548,7 @@ def build_jq_query(identifiers):
         return f".event_data.res | select(.!=null) | .{' // .'.join(paths)} // empty"
 
 
-def build_structured_query(module_data):
+def build_structured_query(module_data, collection_name=None):
     """Build structured jq query in AAP format with name, canonical_facts, facts"""
     identifiers = module_data['identifiers']
     module_name = module_data['module_name']
@@ -430,6 +557,17 @@ def build_structured_query(module_data):
     # Get container name and type from analysis
     container = container_info.get('name')
     container_type = container_info.get('type', 'dict')  # 'list' or 'dict'
+    
+    # Azure-specific handling: action modules return data under .state
+    # Info modules have proper containers like .resourcegroups[], .subscriptions[]
+    is_azure = collection_name and 'azure' in collection_name.lower()
+    is_info_module = module_name.endswith('_info')
+    
+    if is_azure and not is_info_module and not container:
+        # Azure action modules return results under .state
+        container = 'state'
+        container_type = 'dict'
+        debug(f"  Azure action module detected, using .state container")
     
     # Fallback: try to get container from identifier paths
     if not container:
@@ -578,7 +716,7 @@ def generate_file(modules_data, collection_name, output_path):
             full_name = f"{namespace}.{collection}.{module_name}"
             
             # Build the structured query
-            query = build_structured_query(module_data)
+            query = build_structured_query(module_data, collection_name)
             
             f.write(f"{full_name}:\n")
             f.write(f"  query: >-\n")
