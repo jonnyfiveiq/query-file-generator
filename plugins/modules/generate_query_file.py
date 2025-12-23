@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- jonnyfiveiq
+# -*- coding: utf-8 -*- Jonnyfiveiq - 2
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
@@ -317,6 +317,108 @@ def find_identifiers(yaml_data, path=""):
     return identifiers
 
 
+def detect_container_type_from_return(yaml_data):
+    """
+    Detect container name and type from RETURN documentation.
+    
+    Uses multiple signals in order of reliability:
+    1. Explicit 'type: list' or 'type: dict' in RETURN doc (HIGH confidence)
+    2. 'elements:' field present - implies list (HIGH confidence)
+    3. 'sample:' data structure - list vs dict (MEDIUM confidence)
+    4. 'contains:' block only - default to dict (LOW confidence)
+    
+    Returns: (container_name, container_type, confidence)
+        container_type: 'list' or 'dict'
+        confidence: 'high', 'medium', 'low', or None if not detected
+    """
+    if not isinstance(yaml_data, dict):
+        return None, None, None
+    
+    for key, value in yaml_data.items():
+        if not isinstance(value, dict):
+            continue
+            
+        # Skip if not a returned value
+        if not value.get('returned'):
+            continue
+        
+        # Signal 1: Explicit type declaration (highest confidence)
+        explicit_type = value.get('type')
+        if explicit_type == 'list':
+            debug(f"  Container '{key}' has explicit type: list")
+            return key, 'list', 'high'
+        elif explicit_type == 'dict':
+            debug(f"  Container '{key}' has explicit type: dict")
+            return key, 'dict', 'high'
+        
+        # Signal 2: 'elements' field indicates list type
+        if 'elements' in value:
+            debug(f"  Container '{key}' has 'elements' field, treating as list")
+            return key, 'list', 'high'
+        
+        # Signal 3: Check sample data structure
+        sample = value.get('sample')
+        if sample is not None:
+            if isinstance(sample, list):
+                debug(f"  Container '{key}' has list sample, treating as list")
+                return key, 'list', 'medium'
+            elif isinstance(sample, dict):
+                debug(f"  Container '{key}' has dict sample, treating as dict")
+                return key, 'dict', 'medium'
+        
+        # Signal 4: Has 'contains' block - default to dict (safest)
+        if 'contains' in value:
+            debug(f"  Container '{key}' has 'contains' block, defaulting to dict (LOW confidence)")
+            return key, 'dict', 'low'
+        
+        # Found a returned container but couldn't determine type
+        # Default to dict as it's safer (won't error, just won't iterate)
+        debug(f"  Container '{key}' found but type unknown, defaulting to dict (LOW confidence)")
+        return key, 'dict', 'low'
+    
+    return None, None, None
+
+
+def infer_container_from_module_name(module_name, collection_name=None):
+    """
+    LAST RESORT: Infer container from module naming conventions.
+    
+    This is LOW CONFIDENCE and should only be used when RETURN docs
+    provide no information. Results should be flagged for review.
+    
+    Returns: (container_name, container_type, reason)
+    """
+    # Azure-specific patterns
+    if module_name.startswith('azure_rm_'):
+        base_name = module_name[len('azure_rm_'):]
+        is_info_module = base_name.endswith('_info')
+        
+        if is_info_module:
+            # Info modules typically return lists, but we're not certain
+            resource_name = base_name[:-5]
+            
+            # Known Azure container mappings (verified from actual modules)
+            # Only include mappings we've actually verified
+            verified_mappings = {
+                'resourcegroup': 'resourcegroups',
+                'subscription': 'subscriptions',
+            }
+            
+            if resource_name in verified_mappings:
+                container = verified_mappings[resource_name]
+                return container, 'list', f'verified Azure pattern: {resource_name}'
+            else:
+                # Unverified - use simple pluralization but flag it
+                container = resource_name + 's'
+                return container, 'list', f'UNVERIFIED Azure pattern: {resource_name} (needs review)'
+        else:
+            # Action modules return under .state
+            return 'state', 'dict', 'Azure action module pattern'
+    
+    # No inference available
+    return None, None, None
+
+
 def infer_azure_container(module_name):
     """
     Infer container name and type for Azure modules based on naming conventions.
@@ -404,128 +506,112 @@ def infer_azure_container(module_name):
         return 'state', 'dict'
 
 
-def analyze_module(module_name, content):
-    """Analyze single module"""
+def analyze_module(module_name, content, collection_name=None):
+    """
+    Analyze single module and extract container/identifier information.
+    
+    Returns dict with:
+        - module_name: str
+        - identifiers: list of identifier dicts
+        - container_info: dict with 'name', 'type', 'confidence', 'source'
+        - fallback: bool (True if using fallback identifiers)
+        - needs_review: bool (True if detection confidence is low)
+    """
     debug(f"\n=== {module_name} ===")
     
+    result = {
+        'module_name': module_name,
+        'identifiers': [],
+        'container_info': {},
+        'fallback': True,
+        'needs_review': False,
+        'detection_notes': []
+    }
+    
     return_text = extract_return_section(content)
+    yaml_data = None
     
-    if not return_text:
-        debug("  No RETURN section")
-        # For Azure modules without RETURN, try to infer container
-        inferred_container, inferred_type = infer_azure_container(module_name)
-        if inferred_container:
-            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
-            return {
-                'module_name': module_name,
-                'identifiers': [{'path': 'id', 'name': 'id'}],
-                'container_info': {'name': inferred_container, 'type': inferred_type},
-                'fallback': True
-            }
-        return {
-            'module_name': module_name,
-            'identifiers': [{'path': 'id', 'name': 'id'}],
-            'container_info': {},
-            'fallback': True
-        }
+    # Try to parse RETURN section
+    if return_text:
+        debug(f"  RETURN: {len(return_text)} chars")
+        try:
+            yaml_data = yaml.safe_load(return_text)
+            if not yaml_data or not isinstance(yaml_data, dict):
+                debug("  Invalid RETURN YAML structure")
+                yaml_data = None
+        except Exception as e:
+            debug(f"  YAML parse error: {e}")
+            yaml_data = None
+    else:
+        debug("  No RETURN section found")
     
-    debug(f"  RETURN: {len(return_text)} chars")
-    
-    try:
-        yaml_data = yaml.safe_load(return_text)
-        if not yaml_data or not isinstance(yaml_data, dict):
-            debug("  Invalid RETURN YAML")
-            # For Azure modules with invalid RETURN, try to infer container
-            inferred_container, inferred_type = infer_azure_container(module_name)
-            if inferred_container:
-                debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
-                return {
-                    'module_name': module_name,
-                    'identifiers': [{'path': 'id', 'name': 'id'}],
-                    'container_info': {'name': inferred_container, 'type': inferred_type},
-                    'fallback': True
-                }
-            return {
-                'module_name': module_name,
-                'identifiers': [{'path': 'id', 'name': 'id'}],
-                'container_info': {},
-                'fallback': True
-            }
-    except Exception as e:
-        debug(f"  YAML error: {e}")
-        # For Azure modules with YAML errors, try to infer container
-        inferred_container, inferred_type = infer_azure_container(module_name)
-        if inferred_container:
-            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
-            return {
-                'module_name': module_name,
-                'identifiers': [{'path': 'id', 'name': 'id'}],
-                'container_info': {'name': inferred_container, 'type': inferred_type},
-                'fallback': True
-            }
-        return {
-            'module_name': module_name,
-            'identifiers': [{'path': 'id', 'name': 'id'}],
-            'container_info': {},
-            'fallback': True
-        }
-    
-    # Find the primary container and its type from RETURN doc
+    # STEP 1: Try to detect container from RETURN documentation
     container_info = {}
-    for key, value in yaml_data.items():
-        if isinstance(value, dict):
-            container_type = value.get('type', 'dict')
-            # Check if this looks like the main return container
-            if container_type in ['list', 'dict'] and value.get('returned'):
-                container_info = {
-                    'name': key,
-                    'type': container_type
-                }
-                debug(f"  Container from RETURN: {key} (type={container_type})")
-                break
+    if yaml_data:
+        container_name, container_type, confidence = detect_container_type_from_return(yaml_data)
+        if container_name:
+            container_info = {
+                'name': container_name,
+                'type': container_type,
+                'confidence': confidence,
+                'source': 'RETURN_doc'
+            }
+            debug(f"  Container from RETURN: {container_name} (type={container_type}, confidence={confidence})")
+            
+            if confidence == 'low':
+                result['needs_review'] = True
+                result['detection_notes'].append(f"Container type for '{container_name}' inferred with low confidence")
     
-    # If no container found from RETURN doc, try to infer from module name
+    # STEP 2: If no container from RETURN, try module name inference (LAST RESORT)
     if not container_info:
-        inferred_container, inferred_type = infer_azure_container(module_name)
+        inferred_container, inferred_type, reason = infer_container_from_module_name(module_name, collection_name)
         if inferred_container:
             container_info = {
                 'name': inferred_container,
-                'type': inferred_type
+                'type': inferred_type,
+                'confidence': 'low',  # Name-based inference is always low confidence
+                'source': 'name_inference'
             }
-            debug(f"  Inferred Azure container: {inferred_container} (type={inferred_type})")
+            debug(f"  Container from name inference: {inferred_container} (type={inferred_type}) - {reason}")
+            result['needs_review'] = True
+            result['detection_notes'].append(f"Container inferred from module name: {reason}")
     
-    identifiers = find_identifiers(yaml_data)
-    debug(f"  Found {len(identifiers)} identifiers: {[i['path'] for i in identifiers]}")
-    
-    if not identifiers:
-        # For known container patterns, use default identifiers
-        # 'instance' is a common pattern for VM modules in vmware collections
-        for key in yaml_data.keys():
-            if key.lower() == 'instance':
-                debug(f"  Using default VM identifiers for 'instance' container")
-                return {
-                    'module_name': module_name,
-                    'identifiers': [
+    # STEP 3: Find identifiers from RETURN doc
+    if yaml_data:
+        identifiers = find_identifiers(yaml_data)
+        debug(f"  Found {len(identifiers)} identifiers: {[i['path'] for i in identifiers]}")
+        
+        if identifiers:
+            result['identifiers'] = identifiers
+            result['fallback'] = False
+        
+        # Special case: VMware 'instance' container
+        if not identifiers:
+            for key in yaml_data.keys():
+                if key.lower() == 'instance':
+                    debug(f"  Using default VM identifiers for 'instance' container")
+                    result['identifiers'] = [
                         {'path': 'moid', 'name': 'moid'},
                         {'path': 'instance_uuid', 'name': 'instance_uuid'},
                         {'path': 'hw_product_uuid', 'name': 'hw_product_uuid'}
-                    ],
-                    'container_info': {'name': 'instance', 'type': 'dict'},
-                    'fallback': False
-                }
-        return {
-            'module_name': module_name,
-            'identifiers': [{'path': 'id', 'name': 'id'}],
-            'container_info': container_info,
-            'fallback': True
-        }
+                    ]
+                    result['container_info'] = {
+                        'name': 'instance',
+                        'type': 'dict',
+                        'confidence': 'high',
+                        'source': 'vmware_pattern'
+                    }
+                    result['fallback'] = False
+                    return result
     
-    return {
-        'module_name': module_name,
-        'identifiers': identifiers,
-        'container_info': container_info,
-        'fallback': False
-    }
+    # STEP 4: Apply fallbacks if needed
+    if not result['identifiers']:
+        result['identifiers'] = [{'path': 'id', 'name': 'id'}]
+        result['fallback'] = True
+        result['detection_notes'].append("Using fallback identifier: .id")
+    
+    result['container_info'] = container_info
+    return result
 
 
 def build_jq_query(identifiers):
@@ -698,14 +784,17 @@ def build_structured_query(module_data, collection_name=None):
 
 
 def generate_file(modules_data, collection_name, output_path):
-    """Generate event_query.yml in the correct AAP format"""
+    """Generate event_query.yml in the correct AAP format.
+    
+    Also generates a _review.txt file listing modules that need manual review.
+    """
     namespace, _, collection = collection_name.partition('.')
     if not collection:
         namespace, collection = collection_name, collection_name
     
     # Include all modules - even fallbacks get a basic query
-    # Fallbacks just won't have good identifiers but might still work
     valid_modules = modules_data
+    needs_review = []
     
     with open(output_path, 'w') as f:
         f.write("---\n")
@@ -714,6 +803,14 @@ def generate_file(modules_data, collection_name, output_path):
         for module_data in valid_modules:
             module_name = module_data['module_name']
             full_name = f"{namespace}.{collection}.{module_name}"
+            
+            # Track modules needing review
+            if module_data.get('needs_review'):
+                needs_review.append({
+                    'module': full_name,
+                    'notes': module_data.get('detection_notes', []),
+                    'container': module_data.get('container_info', {})
+                })
             
             # Build the structured query
             query = build_structured_query(module_data, collection_name)
@@ -724,7 +821,40 @@ def generate_file(modules_data, collection_name, output_path):
                 f.write(f"    {line}\n")
             f.write("\n")
     
-    return len(valid_modules)
+    # Generate review report if there are modules to review
+    if needs_review:
+        review_path = output_path.replace('.yml', '_REVIEW.txt')
+        with open(review_path, 'w') as f:
+            f.write("=" * 70 + "\n")
+            f.write("MODULES REQUIRING MANUAL REVIEW\n")
+            f.write("=" * 70 + "\n\n")
+            f.write("The following modules have LOW CONFIDENCE container type detection.\n")
+            f.write("Please verify the container name and type (list vs dict) are correct.\n\n")
+            
+            for item in needs_review:
+                f.write(f"Module: {item['module']}\n")
+                container = item['container']
+                if container:
+                    f.write(f"  Container: .{container.get('name', '?')}\n")
+                    f.write(f"  Type: {container.get('type', '?')}\n")
+                    f.write(f"  Source: {container.get('source', '?')}\n")
+                else:
+                    f.write(f"  Container: NONE DETECTED\n")
+                for note in item['notes']:
+                    f.write(f"  Note: {note}\n")
+                f.write("\n")
+            
+            f.write("-" * 70 + "\n")
+            f.write("HOW TO VERIFY:\n")
+            f.write("-" * 70 + "\n")
+            f.write("1. Run the module and examine the actual return data structure\n")
+            f.write("2. If return is a list: [{...}, {...}] → type should be 'list'\n")
+            f.write("3. If return is a dict: {...} → type should be 'dict'\n")
+            f.write("4. Update the event_query.yml accordingly:\n")
+            f.write("   - list: .container[] | {...}\n")
+            f.write("   - dict: .container | select(. != null) | {...}\n")
+    
+    return len(valid_modules), len(needs_review)
 
 
 def main():
@@ -755,38 +885,55 @@ def main():
     if 'error' in data:
         module.fail_json(msg=data['error'])
     
+    collection_name = data['collection_name']
+    
     # Filter modules
     modules = data['modules']
     if module.params.get('modules_to_analyze'):
         modules = [m for m in modules if m['name'] in module.params['modules_to_analyze']]
     
-    # Analyze
-    analyzed = [analyze_module(m['name'], m['content']) for m in modules]
+    # Analyze - pass collection_name for better inference
+    analyzed = [analyze_module(m['name'], m['content'], collection_name) for m in modules]
     
     # Generate
+    queries_count = 0
+    needs_review_count = 0
     if not module.check_mode:
-        queries_count = generate_file(
+        queries_count, needs_review_count = generate_file(
             analyzed,
-            data['collection_name'],
+            collection_name,
             module.params['output_path']
         )
     else:
         queries_count = len(analyzed)
+        needs_review_count = sum(1 for a in analyzed if a.get('needs_review', False))
     
-    # Count successes
+    # Count successes (high confidence detections)
     success_count = sum(1 for a in analyzed if not a.get('fallback', False))
     
-    module.exit_json(
-        changed=True,
-        query_file_path=module.params['output_path'],
-        modules_analyzed=len(modules),
-        queries_generated=queries_count,
-        successful_parses=success_count,
-        collection_info={
-            'name': data['collection_name'],
+    # Build output message
+    output = {
+        'changed': True,
+        'query_file_path': module.params['output_path'],
+        'modules_analyzed': len(modules),
+        'queries_generated': queries_count,
+        'successful_parses': success_count,
+        'needs_review': needs_review_count,
+        'collection_info': {
+            'name': collection_name,
             'source': data['source']
         }
-    )
+    }
+    
+    # Add warning if there are modules needing review
+    if needs_review_count > 0:
+        review_path = module.params['output_path'].replace('.yml', '_REVIEW.txt')
+        output['warnings'] = [
+            f"{needs_review_count} module(s) have LOW CONFIDENCE container detection. "
+            f"Review {review_path} and verify container types are correct."
+        ]
+    
+    module.exit_json(**output)
 
 
 if __name__ == '__main__':
