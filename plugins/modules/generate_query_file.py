@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# -*- coding: utf-8 -*- Jonnyfiveiq - 2
+# -*- coding: utf-8 -*-
 
 from __future__ import absolute_import, division, print_function
 __metaclass__ = type
@@ -786,33 +786,50 @@ def build_structured_query(module_data, collection_name=None):
 def generate_file(modules_data, collection_name, output_path):
     """Generate event_query.yml in the correct AAP format.
     
-    Also generates a _review.txt file listing modules that need manual review.
+    Also generates a report.txt file with detection statistics and modules needing review.
     """
     namespace, _, collection = collection_name.partition('.')
     if not collection:
         namespace, collection = collection_name, collection_name
     
-    # Include all modules - even fallbacks get a basic query
-    valid_modules = modules_data
-    needs_review = []
+    # Categorize modules by detection confidence
+    high_confidence = []
+    medium_confidence = []
+    low_confidence = []
+    no_container = []
     
+    for module_data in modules_data:
+        module_name = module_data['module_name']
+        full_name = f"{namespace}.{collection}.{module_name}"
+        container = module_data.get('container_info', {})
+        confidence = container.get('confidence')
+        
+        entry = {
+            'module': full_name,
+            'module_name': module_name,
+            'container': container,
+            'identifiers': module_data.get('identifiers', []),
+            'fallback': module_data.get('fallback', True),
+            'notes': module_data.get('detection_notes', [])
+        }
+        
+        if not container:
+            no_container.append(entry)
+        elif confidence == 'high':
+            high_confidence.append(entry)
+        elif confidence == 'medium':
+            medium_confidence.append(entry)
+        else:
+            low_confidence.append(entry)
+    
+    # Write the event_query.yml file
     with open(output_path, 'w') as f:
         f.write("---\n")
         
-        # Write each module with valid identifiers
-        for module_data in valid_modules:
+        for module_data in modules_data:
             module_name = module_data['module_name']
             full_name = f"{namespace}.{collection}.{module_name}"
             
-            # Track modules needing review
-            if module_data.get('needs_review'):
-                needs_review.append({
-                    'module': full_name,
-                    'notes': module_data.get('detection_notes', []),
-                    'container': module_data.get('container_info', {})
-                })
-            
-            # Build the structured query
             query = build_structured_query(module_data, collection_name)
             
             f.write(f"{full_name}:\n")
@@ -821,40 +838,118 @@ def generate_file(modules_data, collection_name, output_path):
                 f.write(f"    {line}\n")
             f.write("\n")
     
-    # Generate review report if there are modules to review
-    if needs_review:
-        review_path = output_path.replace('.yml', '_REVIEW.txt')
-        with open(review_path, 'w') as f:
-            f.write("=" * 70 + "\n")
-            f.write("MODULES REQUIRING MANUAL REVIEW\n")
-            f.write("=" * 70 + "\n\n")
-            f.write("The following modules have LOW CONFIDENCE container type detection.\n")
+    # Generate comprehensive report
+    report_path = output_path.replace('.yml', '_report.txt')
+    with open(report_path, 'w') as f:
+        f.write("=" * 78 + "\n")
+        f.write(f"EVENT QUERY GENERATION REPORT: {collection_name}\n")
+        f.write("=" * 78 + "\n\n")
+        
+        # Summary statistics
+        total = len(modules_data)
+        f.write("SUMMARY\n")
+        f.write("-" * 78 + "\n")
+        f.write(f"Total modules analyzed:     {total}\n")
+        f.write(f"High confidence detection:  {len(high_confidence):3d}  (explicit type in RETURN doc)\n")
+        f.write(f"Medium confidence:          {len(medium_confidence):3d}  (inferred from sample data)\n")
+        f.write(f"Low confidence:             {len(low_confidence):3d}  (guessed - NEEDS REVIEW)\n")
+        f.write(f"No container detected:      {len(no_container):3d}  (using generic fallback)\n")
+        f.write("\n")
+        
+        # High confidence - just list them briefly
+        if high_confidence:
+            f.write("\n" + "=" * 78 + "\n")
+            f.write("HIGH CONFIDENCE DETECTIONS (no action needed)\n")
+            f.write("=" * 78 + "\n")
+            for entry in high_confidence:
+                container = entry['container']
+                ctype = container.get('type', '?')
+                cname = container.get('name', '?')
+                accessor = f".{cname}[]" if ctype == 'list' else f".{cname}"
+                f.write(f"  {entry['module_name']:40s} → {accessor}\n")
+        
+        # Medium confidence
+        if medium_confidence:
+            f.write("\n" + "=" * 78 + "\n")
+            f.write("MEDIUM CONFIDENCE DETECTIONS (verify if issues occur)\n")
+            f.write("=" * 78 + "\n")
+            for entry in medium_confidence:
+                container = entry['container']
+                ctype = container.get('type', '?')
+                cname = container.get('name', '?')
+                source = container.get('source', '?')
+                accessor = f".{cname}[]" if ctype == 'list' else f".{cname}"
+                f.write(f"  {entry['module_name']:40s} → {accessor:20s} (from {source})\n")
+        
+        # Low confidence - detailed review needed
+        if low_confidence:
+            f.write("\n" + "=" * 78 + "\n")
+            f.write("LOW CONFIDENCE - MANUAL REVIEW REQUIRED\n")
+            f.write("=" * 78 + "\n")
+            f.write("\nThe following modules have uncertain container type detection.\n")
             f.write("Please verify the container name and type (list vs dict) are correct.\n\n")
             
-            for item in needs_review:
-                f.write(f"Module: {item['module']}\n")
-                container = item['container']
+            for entry in low_confidence:
+                f.write(f"Module: {entry['module']}\n")
+                container = entry['container']
                 if container:
-                    f.write(f"  Container: .{container.get('name', '?')}\n")
-                    f.write(f"  Type: {container.get('type', '?')}\n")
-                    f.write(f"  Source: {container.get('source', '?')}\n")
-                else:
-                    f.write(f"  Container: NONE DETECTED\n")
-                for note in item['notes']:
-                    f.write(f"  Note: {note}\n")
+                    ctype = container.get('type', '?')
+                    cname = container.get('name', '?')
+                    source = container.get('source', '?')
+                    accessor = f".{cname}[]" if ctype == 'list' else f".{cname} | select(. != null)"
+                    f.write(f"  Detected container: {cname}\n")
+                    f.write(f"  Detected type:      {ctype}\n")
+                    f.write(f"  Detection source:   {source}\n")
+                    f.write(f"  Generated query:    {accessor} | {{...}}\n")
+                for note in entry['notes']:
+                    f.write(f"  ⚠ {note}\n")
                 f.write("\n")
+        
+        # No container detected
+        if no_container:
+            f.write("\n" + "=" * 78 + "\n")
+            f.write("NO CONTAINER DETECTED - USING GENERIC FALLBACK\n")
+            f.write("=" * 78 + "\n")
+            f.write("\nThese modules have no container detection. Using '. | select(. != null)'.\n")
+            f.write("This may or may not work depending on actual module output.\n\n")
             
-            f.write("-" * 70 + "\n")
-            f.write("HOW TO VERIFY:\n")
-            f.write("-" * 70 + "\n")
-            f.write("1. Run the module and examine the actual return data structure\n")
-            f.write("2. If return is a list: [{...}, {...}] → type should be 'list'\n")
-            f.write("3. If return is a dict: {...} → type should be 'dict'\n")
-            f.write("4. Update the event_query.yml accordingly:\n")
-            f.write("   - list: .container[] | {...}\n")
-            f.write("   - dict: .container | select(. != null) | {...}\n")
+            for entry in no_container:
+                f.write(f"  {entry['module_name']}\n")
+                for note in entry['notes']:
+                    f.write(f"    ⚠ {note}\n")
+        
+        # Verification instructions
+        f.write("\n" + "=" * 78 + "\n")
+        f.write("HOW TO VERIFY CONTAINER TYPES\n")
+        f.write("=" * 78 + "\n")
+        f.write("""
+1. Run the module against real infrastructure:
+   
+   ansible <host> -m <module_name> -a "<args>" -v
+   
+2. Examine the return data structure in the output:
+   
+   - If it looks like: {"resourcegroups": [{...}, {...}]}
+     → Container is 'resourcegroups', type is 'list'
+     → Query should use: .resourcegroups[] | {...}
+   
+   - If it looks like: {"state": {"id": "...", "name": "..."}}
+     → Container is 'state', type is 'dict'  
+     → Query should use: .state | select(. != null) | {...}
+
+3. Update event_query.yml if the detection was wrong:
+   
+   For lists:   .container[] | { name: .id, ... }
+   For dicts:   .container | select(. != null) | { name: .id, ... }
+
+4. Test by running an AAP job and checking indirect node counts.
+""")
+        
+        f.write("\n" + "=" * 78 + "\n")
+        f.write("END OF REPORT\n")
+        f.write("=" * 78 + "\n")
     
-    return len(valid_modules), len(needs_review)
+    return len(modules_data), len(low_confidence) + len(no_container)
 
 
 def main():
@@ -927,10 +1022,10 @@ def main():
     
     # Add warning if there are modules needing review
     if needs_review_count > 0:
-        review_path = module.params['output_path'].replace('.yml', '_REVIEW.txt')
+        report_path = module.params['output_path'].replace('.yml', '_report.txt')
         output['warnings'] = [
             f"{needs_review_count} module(s) have LOW CONFIDENCE container detection. "
-            f"Review {review_path} and verify container types are correct."
+            f"Review {report_path} for details and verification steps."
         ]
     
     module.exit_json(**output)

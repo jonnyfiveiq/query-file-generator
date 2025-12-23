@@ -1,0 +1,5475 @@
+---
+azure.azcollection.azure_rm_accesstoken_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_account_info:
+  query: >-
+    .account_info | select(. != null) | {
+      name: .tenant_id,
+      canonical_facts: {
+        id: .tenant_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adapplication:
+  query: >-
+    .identifier_uris[] | {
+      name: .app_id,
+      canonical_facts: {
+        id: .app_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adapplication_info:
+  query: >-
+    .applications | select(. != null) | {
+      name: .app_id,
+      canonical_facts: {
+        id: .app_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adgroup:
+  query: >-
+    .group_owners[] | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adgroup_info:
+  query: >-
+    .group_owners[] | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adpassword:
+  query: >-
+    . | select(. != null) | {
+      name: .key_id,
+      canonical_facts: {
+        id: .key_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adpassword_info:
+  query: >-
+    .passwords | select(. != null) | {
+      name: .custom_key_identifier,
+      canonical_facts: {
+        id: .custom_key_identifier
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adserviceprincipal:
+  query: >-
+    . | select(. != null) | {
+      name: .app_id,
+      canonical_facts: {
+        id: .app_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_adserviceprincipal_info:
+  query: >-
+    .service_principals[] | {
+      name: .app_id,
+      canonical_facts: {
+        id: .app_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aduser:
+  query: >-
+    .on_premises_extension_attributes | select(. != null) | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aduser_info:
+  query: >-
+    .on_premises_extension_attributes | select(. != null) | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdendpoint:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdendpoint_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdorigin:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdorigin_info:
+  query: >-
+    .afdorigins | select(. != null) | {
+      name: .group_id,
+      canonical_facts: {
+        id: .group_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdorigingroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdorigingroup_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdroute:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdroute_info:
+  query: >-
+    .afdroutes | select(. != null) | {
+      name: .origin_group_id,
+      canonical_facts: {
+        id: .origin_group_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdrules:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdrules_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdruleset:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_afdruleset_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aks:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aks_info:
+  query: >-
+    .azure_aks[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aksagentpool:
+  query: >-
+    .aks_agent_pools | select(. != null) | {
+      name: .vnet_subnet_id,
+      canonical_facts: {
+        id: .vnet_subnet_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aksagentpool_info:
+  query: >-
+    .aks_agent_pools | select(. != null) | {
+      name: .vnet_subnet_id,
+      canonical_facts: {
+        id: .vnet_subnet_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aksagentpoolversion_info:
+  query: >-
+    .azure_orchestrator_version[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_akscredentials_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aksupgrade_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_aksversion_info:
+  query: >-
+    .azure_aks_versions[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_apimanagement:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_apimanagement_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_apimanagementservice:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_apimanagementservice_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_appgateway:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_appgateway_info:
+  query: >-
+    .gateways[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_applicationfirewallpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_applicationfirewallpolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_applicationsecuritygroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_applicationsecuritygroup_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_appserviceplan:
+  query: >-
+    .azure_appserviceplan | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_appserviceplan_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_arcssh:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_automationaccount:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_automationaccount_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_automationrunbook:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_automationrunbook_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_autoscale:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_autoscale_info:
+  query: >-
+    .autoscales[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_availabilityset:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_availabilityset_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_azurefirewall:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_azurefirewall_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_backupazurevm:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_backupazurevm_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_backuppolicy:
+  query: >-
+    .properties | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_backuppolicy_info:
+  query: >-
+    .properties | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_bastionhost:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_bastionhost_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccount:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccount_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountapplication:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountapplication_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountapplicationpackage:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountapplicationpackage_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountpool:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_batchaccountpool_info:
+  query: >-
+    .batch_account_pool | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_capacityreservationgroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_capacityreservationgroup_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cdnendpoint:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cdnendpoint_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cdnprofile:
+  query: >-
+    .id | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cdnprofile_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cognitivesearch:
+  query: >-
+    .state | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cognitivesearch_info:
+  query: >-
+    .search[] | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerinstance:
+  query: >-
+    .containers[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerinstance_info:
+  query: >-
+    .container_groups | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistry:
+  query: >-
+    .tags | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistry_info:
+  query: >-
+    .registries | select(. != null) | {
+      name: .user_assigned_identities,
+      canonical_facts: {
+        id: .user_assigned_identities
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistryreplication:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistryreplication_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistryscopemap:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistryscopemap_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrytag:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrytag_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrytoken:
+  query: >-
+    .registry_token | select(. != null) | {
+      name: .scope_map_id,
+      canonical_facts: {
+        id: .scope_map_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrytoken_info:
+  query: >-
+    .registry_tokens | select(. != null) | {
+      name: .scope_map_id,
+      canonical_facts: {
+        id: .scope_map_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrytokenpassword:
+  query: >-
+    .passwords[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrywebhook:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_containerregistrywebhook_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cosmosdbaccount:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_cosmosdbaccount_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_datafactory:
+  query: >-
+    .state | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_datafactory_info:
+  query: >-
+    .datafactory | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_ddosprotectionplan:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_ddosprotectionplan_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_dedicatedhost:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_dedicatedhost_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_deployment:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_deployment_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlab:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlab_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabarmtemplate_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabartifact_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabartifactsource:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabartifactsource_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabcustomimage:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabcustomimage_info:
+  query: >-
+    .custom_images | select(. != null) | {
+      name: .managed_shapshot_id,
+      canonical_facts: {
+        id: .managed_shapshot_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabenvironment:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabenvironment_info:
+  query: >-
+    .environments | select(. != null) | {
+      name: .resource_group_id,
+      canonical_facts: {
+        id: .resource_group_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabpolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabschedule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabschedule_info:
+  query: >-
+    .schedules | select(. != null) | {
+      name: .time_zone_id,
+      canonical_facts: {
+        id: .time_zone_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabvirtualmachine:
+  query: >-
+    . | select(. != null) | {
+      name: .compute_id,
+      canonical_facts: {
+        id: .compute_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabvirtualmachine_info:
+  query: >-
+    .virtualmachines | select(. != null) | {
+      name: .compute_vm_id,
+      canonical_facts: {
+        id: .compute_vm_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabvirtualnetwork:
+  query: >-
+    . | select(. != null) | {
+      name: .external_provider_resource_id,
+      canonical_facts: {
+        id: .external_provider_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_devtestlabvirtualnetwork_info:
+  query: >-
+    .virtualnetworks | select(. != null) | {
+      name: .external_provider_resource_id,
+      canonical_facts: {
+        id: .external_provider_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_diskaccess:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_diskaccess_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_diskencryptionset:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_diskencryptionset_info:
+  query: >-
+    .diskencryptionsets[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_dnsrecordset:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_dnsrecordset_info:
+  query: >-
+    .azure_dnsrecordset[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_dnszone:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_dnszone_info:
+  query: >-
+    .azure_dnszones[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_eventhub:
+  query: >-
+    .state | select(. != null) | {
+      name: .metric_id,
+      canonical_facts: {
+        id: .metric_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_eventhub_info:
+  query: >-
+    .state | select(. != null) | {
+      name: .metric_id,
+      canonical_facts: {
+        id: .metric_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_expressroute:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_expressroute_info:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_firewallpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_firewallpolicy_info:
+  query: >-
+    .firewallpolicies[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_functionapp:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_functionapp_info:
+  query: >-
+    .azure_functionapps[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_gallery:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_gallery_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_galleryimage:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_galleryimage_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_galleryimageversion:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_galleryimageversion_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_hdinsightcluster:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_hdinsightcluster_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_hostgroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_hostgroup_info:
+  query: >-
+    .hostgroups[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "ESXi"
+      }
+    }
+
+azure.azcollection.azure_rm_image:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_image_info:
+  query: >-
+    .images | select(. != null) | {
+      name: .managed_disk_id,
+      canonical_facts: {
+        id: .managed_disk_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_imagesku_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iotdevice:
+  query: >-
+    .device | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iotdevice_info:
+  query: >-
+    .iot_devices | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iotdevicemodule:
+  query: >-
+    .module | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iothub:
+  query: >-
+    .event_endpoints | select(. != null) | {
+      name: .partition_ids,
+      canonical_facts: {
+        id: .partition_ids
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iothub_info:
+  query: >-
+    .azure_iothubs | select(. != null) | {
+      name: .user_assigned_identities,
+      canonical_facts: {
+        id: .user_assigned_identities
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_iothubconsumergroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_ipgroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_ipgroup_info:
+  query: >-
+    .ipgroups[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvault:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvault_info:
+  query: >-
+    .keyvaults[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultcertificate:
+  query: >-
+    .certificates | select(. != null) | {
+      name: .recovery_id,
+      canonical_facts: {
+        id: .recovery_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultcertificate_info:
+  query: >-
+    .certificates | select(. != null) | {
+      name: .recovery_id,
+      canonical_facts: {
+        id: .recovery_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultkey:
+  query: >-
+    .state | select(. != null) | {
+      name: .key_id,
+      canonical_facts: {
+        id: .key_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultkey_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultsecret:
+  query: >-
+    .state | select(. != null) | {
+      name: .secret_id,
+      canonical_facts: {
+        id: .secret_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultsecret_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_keyvaultsecuritydomain:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_loadbalancer:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_loadbalancer_info:
+  query: >-
+    .loadbalancers[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_localnetworkgateway:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_localnetworkgateway_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_lock:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_lock_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_loganalyticsworkspace:
+  query: >-
+    .intelligence_packs[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_loganalyticsworkspace_info:
+  query: >-
+    .intelligence_packs[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_manageddisk:
+  query: >-
+    .state | select(. != null) | {
+      name: .storage_account_id,
+      canonical_facts: {
+        id: .storage_account_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_manageddisk_info:
+  query: >-
+    .azure_managed_disk[] | {
+      name: .disk_access_id,
+      canonical_facts: {
+        id: .disk_access_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_managementgroup:
+  query: >-
+    .properties | select(. != null) | {
+      name: .tenant_id,
+      canonical_facts: {
+        id: .tenant_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_managementgroup_info:
+  query: >-
+    .management_groups[] | {
+      name: .tenant_id,
+      canonical_facts: {
+        id: .tenant_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbconfiguration:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbconfiguration_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbdatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbdatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbfirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbfirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbserver:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mariadbserver_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitoractiongroups:
+  query: >-
+    .actiongroup | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitoractiongroups_info:
+  query: >-
+    .actiongroups[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitoractivitylogalerts:
+  query: >-
+    .activitylogalert | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitoractivitylogalerts_info:
+  query: >-
+    .activitylogalerts[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionendpoint:
+  query: >-
+    .datacollectionendpoint | select(. != null) | {
+      name: .immutable_id,
+      canonical_facts: {
+        id: .immutable_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionendpoint_info:
+  query: >-
+    .datacollectionendpoints | select(. != null) | {
+      name: .immutable_id,
+      canonical_facts: {
+        id: .immutable_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionruleassociation:
+  query: >-
+    .datacollectionruleassociation | select(. != null) | {
+      name: .data_collection_rule_id,
+      canonical_facts: {
+        id: .data_collection_rule_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionruleassociation_info:
+  query: >-
+    .datacollectionruleassociations | select(. != null) | {
+      name: .data_collection_rule_id,
+      canonical_facts: {
+        id: .data_collection_rule_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionrules:
+  query: >-
+    .datacollectionrule | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordatacollectionrules_info:
+  query: >-
+    .datacollectionrules[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordiagnosticsetting:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitordiagnosticsetting_info:
+  query: >-
+    .settings[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitorlogprofile:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitormetricalerts:
+  query: >-
+    .metricalert | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitormetricalerts_info:
+  query: >-
+    .metricalerts[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitorscheduledqueryrules:
+  query: >-
+    .scheduledqueryrule | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_monitorscheduledqueryrules_info:
+  query: >-
+    .scheduledqueryrules[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_multiplemanageddisks:
+  query: >-
+    .state | select(. != null) | {
+      name: .storage_account_id,
+      canonical_facts: {
+        id: .storage_account_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlconfiguration:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlconfiguration_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqldatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqldatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlfirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlfirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibleconfiguration:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibleconfiguration_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibledatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibledatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexiblefirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexiblefirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibleserver:
+  query: >-
+    .servers | select(. != null) | {
+      name: .delegated_subnet_resource_id,
+      canonical_facts: {
+        id: .delegated_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlflexibleserver_info:
+  query: >-
+    .servers | select(. != null) | {
+      name: .delegated_subnet_resource_id,
+      canonical_facts: {
+        id: .delegated_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlserver:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_mysqlserver_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_natgateway:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_natgateway_info:
+  query: >-
+    .gateways[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_networkflowlog:
+  query: >-
+    .state | select(. != null) | {
+      name: .target_resource_id,
+      canonical_facts: {
+        id: .target_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_networkflowlog_info:
+  query: >-
+    .flow_logs | select(. != null) | {
+      name: .target_resource_id,
+      canonical_facts: {
+        id: .target_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_networkinterface:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_networkinterface_info:
+  query: >-
+    .networkinterfaces | select(. != null) | {
+      name: .subscription_id,
+      canonical_facts: {
+        id: .subscription_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_networkwatcher:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_networkwatcher_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_notificationhub:
+  query: >-
+    .state | select(. != null) | {
+      name: .metric_id,
+      canonical_facts: {
+        id: .metric_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_notificationhub_info:
+  query: >-
+    .state | select(. != null) | {
+      name: .metric_id,
+      canonical_facts: {
+        id: .metric_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_openshiftmanagedcluster:
+  query: >-
+    .properties | select(. != null) | {
+      name: .disk_encryption_set_id,
+      canonical_facts: {
+        id: .disk_encryption_set_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_openshiftmanagedcluster_info:
+  query: >-
+    .properties | select(. != null) | {
+      name: .disk_encryption_set_id,
+      canonical_facts: {
+        id: .disk_encryption_set_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_openshiftmanagedclusterkubeconfig_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_openshiftmanagedclusterversion_info:
+  query: >-
+    .versions[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Cluster"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlconfiguration:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlconfiguration_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqldatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqldatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlfirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlfirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibleadministrator:
+  query: >-
+    .administrator | select(. != null) | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibleadministrator_info:
+  query: >-
+    .admistrator | select(. != null) | {
+      name: .object_id,
+      canonical_facts: {
+        id: .object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblebackup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblebackup_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibleconfiguration_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibledatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibledatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblefirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblefirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibleserver:
+  query: >-
+    .servers | select(. != null) | {
+      name: .delegated_subnet_resource_id,
+      canonical_facts: {
+        id: .delegated_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexibleserver_info:
+  query: >-
+    .servers | select(. != null) | {
+      name: .delegated_subnet_resource_id,
+      canonical_facts: {
+        id: .delegated_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlserver:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_postgresqlserver_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednsrecordset:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednsrecordset_info:
+  query: >-
+    .dnsrecordsets[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednszone:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednszone_info:
+  query: >-
+    .azure_privatednszones[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednszonelink:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatednszonelink_info:
+  query: >-
+    .virtualnetworklinks[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpoint:
+  query: >-
+    .state | select(. != null) | {
+      name: .subnets_id,
+      canonical_facts: {
+        id: .subnets_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpoint_info:
+  query: >-
+    .state | select(. != null) | {
+      name: .subnets_id,
+      canonical_facts: {
+        id: .subnets_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpointconnection:
+  query: >-
+    .state | select(. != null) | {
+      name: .link_identifier,
+      canonical_facts: {
+        id: .link_identifier
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpointconnection_info:
+  query: >-
+    .endpoint_connection | select(. != null) | {
+      name: .link_identifier,
+      canonical_facts: {
+        id: .link_identifier
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpointdnszonegroup:
+  query: >-
+    .state | select(. != null) | {
+      name: .private_dns_zone_id,
+      canonical_facts: {
+        id: .private_dns_zone_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privateendpointdnszonegroup_info:
+  query: >-
+    .groups | select(. != null) | {
+      name: .private_dns_zone_id,
+      canonical_facts: {
+        id: .private_dns_zone_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatelinkservice:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_privatelinkservice_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_proximityplacementgroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_proximityplacementgroup_info:
+  query: >-
+    .proximityplacementgroups[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_publicipaddress:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_publicipaddress_info:
+  query: >-
+    .azure_publicipaddresses[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_publicipprefix:
+  query: >-
+    .state | select(. != null) | {
+      name: .resource_guid,
+      canonical_facts: {
+        id: .resource_guid
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_publicipprefix_info:
+  query: >-
+    .publicipprefix | select(. != null) | {
+      name: .resource_guid,
+      canonical_facts: {
+        id: .resource_guid
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_recoveryservicesvault:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_recoveryservicesvault_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_recoveryservicesvaultconfig:
+  query: >-
+    .properties | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_recoveryservicesvaultconfig_info:
+  query: >-
+    .properties | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_rediscache:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_rediscache_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_rediscachefirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_registrationassignment:
+  query: >-
+    .state | select(. != null) | {
+      name: .registration_definition_id,
+      canonical_facts: {
+        id: .registration_definition_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_registrationassignment_info:
+  query: >-
+    .registration_assignments | select(. != null) | {
+      name: .registration_definition_id,
+      canonical_facts: {
+        id: .registration_definition_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_registrationdefinition:
+  query: >-
+    .state | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_registrationdefinition_info:
+  query: >-
+    .registration_definitions | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_resource:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_resource_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_resourcegroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_resourcegroup_info:
+  query: >-
+    .resourcegroups[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_resourcehealthstates_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_roleassignment:
+  query: >-
+    . | select(. != null) | {
+      name: .assignee_object_id,
+      canonical_facts: {
+        id: .assignee_object_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_roleassignment_info:
+  query: >-
+    .roleassignments | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_roledefinition:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_roledefinition_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_route:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_route_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_routetable:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_routetable_info:
+  query: >-
+    .tags | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_securitygroup:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_securitygroup_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebus:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebus_info:
+  query: >-
+    .servicebuses | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebusqueue:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebussaspolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebustopic:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_servicebustopicsubscription:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_serviceendpointpolicy:
+  query: >-
+    .serviceendpointpolicypolicy | select(. != null) | {
+      name: .resource_guid,
+      canonical_facts: {
+        id: .resource_guid
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_serviceendpointpolicy_info:
+  query: >-
+    .serviceendpointpolicies | select(. != null) | {
+      name: .resource_guid,
+      canonical_facts: {
+        id: .resource_guid
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_serviceendpointpolicydefinition:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_serviceendpointpolicydefinition_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_snapshot:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_snapshot_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqldatabase:
+  query: >-
+    . | select(. != null) | {
+      name: .database_id,
+      canonical_facts: {
+        id: .database_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqldatabase_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlelasticpool:
+  query: >-
+    .elastic_pool | select(. != null) | {
+      name: .maintenance_configuration_id,
+      canonical_facts: {
+        id: .maintenance_configuration_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlelasticpool_info:
+  query: >-
+    .elastic_pool | select(. != null) | {
+      name: .maintenance_configuration_id,
+      canonical_facts: {
+        id: .maintenance_configuration_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlfirewallrule:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlfirewallrule_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmanagedinstance:
+  query: >-
+    .sql_managed_instance | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmanagedinstance_info:
+  query: >-
+    .sql_managed_instance | select(. != null) | {
+      name: .principal_id,
+      canonical_facts: {
+        id: .principal_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidatabase:
+  query: >-
+    .database | select(. != null) | {
+      name: .long_term_retention_backup_resource_id,
+      canonical_facts: {
+        id: .long_term_retention_backup_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidatabase_info:
+  query: >-
+    .database | select(. != null) | {
+      name: .long_term_retention_backup_resource_id,
+      canonical_facts: {
+        id: .long_term_retention_backup_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlserver:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sqlserver_info:
+  query: >-
+    .servers | select(. != null) | {
+      name: .tenant_id,
+      canonical_facts: {
+        id: .tenant_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sshpublickey:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_sshpublickey_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageaccount:
+  query: >-
+    .state | select(. != null) | {
+      name: .encryption_identity,
+      canonical_facts: {
+        id: .encryption_identity
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageaccount_info:
+  query: >-
+    .azure_storageaccounts[] | {
+      name: .encryption_identity,
+      canonical_facts: {
+        id: .encryption_identity
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageaccountmanagementpolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageaccountmanagementpolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageblob:
+  query: >-
+    .blob | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageblob_info:
+  query: >-
+    .blob | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageshare:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_storageshare_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_subnet:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_subnet_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_subscription_info:
+  query: >-
+    .subscriptions[] | {
+      name: .subscription_id,
+      canonical_facts: {
+        id: .subscription_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_tags:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_tags_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_trafficmanager:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_trafficmanagerendpoint:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_trafficmanagerendpoint_info:
+  query: >-
+    .endpoints | select(. != null) | {
+      name: .target_resource_id,
+      canonical_facts: {
+        id: .target_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_trafficmanagerprofile:
+  query: >-
+    .endpoints[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_trafficmanagerprofile_info:
+  query: >-
+    .tms | select(. != null) | {
+      name: .target_resource_id,
+      canonical_facts: {
+        id: .target_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualhub:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualhub_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualhubconnection:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualhubconnection_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachine:
+  query: >-
+    .deleted_vhd_uris[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachine_info:
+  query: >-
+    .vms | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachineextension:
+  query: >-
+    .state | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachineextension_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachineimage_info:
+  query: >-
+    .azure_vmimages[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescaleset:
+  query: >-
+    .azure_vmss | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescaleset_info:
+  query: >-
+    .vmss[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescalesetextension:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescalesetextension_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescalesetinstance:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinescalesetinstance_info:
+  query: >-
+    .instances | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualmachinesize_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetwork:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetwork_info:
+  query: >-
+    .azure_virtualnetworks[] | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgateway:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgateway_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgatewayconnection:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgatewayconnection_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgatewaynatrule:
+  query: >-
+    .state | select(. != null) | {
+      name: .ip_configuration_id,
+      canonical_facts: {
+        id: .ip_configuration_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkgatewaynatrule_info:
+  query: >-
+    .state | select(. != null) | {
+      name: .ip_configuration_id,
+      canonical_facts: {
+        id: .ip_configuration_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkpeering:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualnetworkpeering_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Network",
+        device_type: "Network"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualwan:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_virtualwan_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_vmbackuppolicy:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_vmbackuppolicy_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_vmsku_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_vmssnetworkinterface_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "VM"
+      }
+    }
+
+azure.azcollection.azure_rm_vpnsite:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_vpnsite_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_vpnsitelink_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webapp:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webapp_info:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webappaccessrestriction:
+  query: >-
+    .ip_security_restrictions[] | {
+      name: .vnet_subnet_resource_id,
+      canonical_facts: {
+        id: .vnet_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webappaccessrestriction_info:
+  query: >-
+    .ip_security_restrictions[] | {
+      name: .vnet_subnet_resource_id,
+      canonical_facts: {
+        id: .vnet_subnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webappslot:
+  query: >-
+    . | select(. != null) | {
+      name: .id,
+      canonical_facts: {
+        id: .id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webappvnetconnection:
+  query: >-
+    .connection | select(. != null) | {
+      name: .vnet_resource_id,
+      canonical_facts: {
+        id: .vnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
+azure.azcollection.azure_rm_webappvnetconnection_info:
+  query: >-
+    .connection | select(. != null) | {
+      name: .vnet_resource_id,
+      canonical_facts: {
+        id: .vnet_resource_id
+      },
+      facts: {
+        infra_type: "PrivateCloud",
+        infra_bucket: "Compute",
+        device_type: "Resource"
+      }
+    }
+
