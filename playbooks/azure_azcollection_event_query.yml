@@ -1,7 +1,7 @@
 ---
 azure.azcollection.azure_rm_accesstoken_info:
   query: >-
-    . | select(. != null) | {
+    .access_token | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -29,7 +29,7 @@ azure.azcollection.azure_rm_account_info:
 
 azure.azcollection.azure_rm_adapplication:
   query: >-
-    .identifier_uris[] | {
+    .display_name | select(. != null) | {
       name: .app_id,
       canonical_facts: {
         id: .app_id
@@ -57,7 +57,7 @@ azure.azcollection.azure_rm_adapplication_info:
 
 azure.azcollection.azure_rm_adgroup:
   query: >-
-    .group_owners[] | {
+    .object_id | select(. != null) | {
       name: .object_id,
       canonical_facts: {
         id: .object_id
@@ -71,7 +71,7 @@ azure.azcollection.azure_rm_adgroup:
 
 azure.azcollection.azure_rm_adgroup_info:
   query: >-
-    .group_owners[] | {
+    .object_id | select(. != null) | {
       name: .object_id,
       canonical_facts: {
         id: .object_id
@@ -85,7 +85,7 @@ azure.azcollection.azure_rm_adgroup_info:
 
 azure.azcollection.azure_rm_adpassword:
   query: >-
-    . | select(. != null) | {
+    .end_date | select(. != null) | {
       name: .key_id,
       canonical_facts: {
         id: .key_id
@@ -113,7 +113,7 @@ azure.azcollection.azure_rm_adpassword_info:
 
 azure.azcollection.azure_rm_adserviceprincipal:
   query: >-
-    . | select(. != null) | {
+    .app_display_name | select(. != null) | {
       name: .app_id,
       canonical_facts: {
         id: .app_id
@@ -141,7 +141,7 @@ azure.azcollection.azure_rm_adserviceprincipal_info:
 
 azure.azcollection.azure_rm_aduser:
   query: >-
-    .on_premises_extension_attributes | select(. != null) | {
+    .object_id | select(. != null) | {
       name: .object_id,
       canonical_facts: {
         id: .object_id
@@ -155,7 +155,7 @@ azure.azcollection.azure_rm_aduser:
 
 azure.azcollection.azure_rm_aduser_info:
   query: >-
-    .on_premises_extension_attributes | select(. != null) | {
+    .object_id | select(. != null) | {
       name: .object_id,
       canonical_facts: {
         id: .object_id
@@ -169,7 +169,7 @@ azure.azcollection.azure_rm_aduser_info:
 
 azure.azcollection.azure_rm_afdendpoint:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -183,7 +183,7 @@ azure.azcollection.azure_rm_afdendpoint:
 
 azure.azcollection.azure_rm_afdendpoint_info:
   query: >-
-    . | select(. != null) | {
+    .afdendpoints | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -197,7 +197,7 @@ azure.azcollection.azure_rm_afdendpoint_info:
 
 azure.azcollection.azure_rm_afdorigin:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -225,7 +225,7 @@ azure.azcollection.azure_rm_afdorigin_info:
 
 azure.azcollection.azure_rm_afdorigingroup:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -239,7 +239,7 @@ azure.azcollection.azure_rm_afdorigingroup:
 
 azure.azcollection.azure_rm_afdorigingroup_info:
   query: >-
-    . | select(. != null) | {
+    .afdorigingroups | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -253,7 +253,7 @@ azure.azcollection.azure_rm_afdorigingroup_info:
 
 azure.azcollection.azure_rm_afdroute:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -281,7 +281,7 @@ azure.azcollection.azure_rm_afdroute_info:
 
 azure.azcollection.azure_rm_afdrules:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -295,7 +295,7 @@ azure.azcollection.azure_rm_afdrules:
 
 azure.azcollection.azure_rm_afdrules_info:
   query: >-
-    . | select(. != null) | {
+    .afdrules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -309,7 +309,7 @@ azure.azcollection.azure_rm_afdrules_info:
 
 azure.azcollection.azure_rm_afdruleset:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -323,7 +323,7 @@ azure.azcollection.azure_rm_afdruleset:
 
 azure.azcollection.azure_rm_afdruleset_info:
   query: >-
-    . | select(. != null) | {
+    .afdrulesets | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -407,7 +407,7 @@ azure.azcollection.azure_rm_aksagentpoolversion_info:
 
 azure.azcollection.azure_rm_akscredentials_info:
   query: >-
-    . | select(. != null) | {
+    .cluster_credentials | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -421,7 +421,7 @@ azure.azcollection.azure_rm_akscredentials_info:
 
 azure.azcollection.azure_rm_aksupgrade_info:
   query: >-
-    . | select(. != null) | {
+    .azure_aks_upgrades | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -449,7 +449,7 @@ azure.azcollection.azure_rm_aksversion_info:
 
 azure.azcollection.azure_rm_apimanagement:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -463,7 +463,7 @@ azure.azcollection.azure_rm_apimanagement:
 
 azure.azcollection.azure_rm_apimanagement_info:
   query: >-
-    . | select(. != null) | {
+    .api | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -477,7 +477,7 @@ azure.azcollection.azure_rm_apimanagement_info:
 
 azure.azcollection.azure_rm_apimanagementservice:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -491,7 +491,7 @@ azure.azcollection.azure_rm_apimanagementservice:
 
 azure.azcollection.azure_rm_apimanagementservice_info:
   query: >-
-    . | select(. != null) | {
+    .api_management_service | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -505,7 +505,7 @@ azure.azcollection.azure_rm_apimanagementservice_info:
 
 azure.azcollection.azure_rm_appgateway:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -533,7 +533,7 @@ azure.azcollection.azure_rm_appgateway_info:
 
 azure.azcollection.azure_rm_applicationfirewallpolicy:
   query: >-
-    . | select(. != null) | {
+    .firewall_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -547,7 +547,7 @@ azure.azcollection.azure_rm_applicationfirewallpolicy:
 
 azure.azcollection.azure_rm_applicationfirewallpolicy_info:
   query: >-
-    . | select(. != null) | {
+    .firewall_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -561,7 +561,7 @@ azure.azcollection.azure_rm_applicationfirewallpolicy_info:
 
 azure.azcollection.azure_rm_applicationsecuritygroup:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -575,7 +575,7 @@ azure.azcollection.azure_rm_applicationsecuritygroup:
 
 azure.azcollection.azure_rm_applicationsecuritygroup_info:
   query: >-
-    . | select(. != null) | {
+    .applicationsecuritygroups | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -603,7 +603,7 @@ azure.azcollection.azure_rm_appserviceplan:
 
 azure.azcollection.azure_rm_appserviceplan_info:
   query: >-
-    . | select(. != null) | {
+    .appserviceplans | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -617,7 +617,7 @@ azure.azcollection.azure_rm_appserviceplan_info:
 
 azure.azcollection.azure_rm_arcssh:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -631,7 +631,7 @@ azure.azcollection.azure_rm_arcssh:
 
 azure.azcollection.azure_rm_automationaccount:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -645,7 +645,7 @@ azure.azcollection.azure_rm_automationaccount:
 
 azure.azcollection.azure_rm_automationaccount_info:
   query: >-
-    . | select(. != null) | {
+    .automation_accounts | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -659,7 +659,7 @@ azure.azcollection.azure_rm_automationaccount_info:
 
 azure.azcollection.azure_rm_automationrunbook:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -673,7 +673,7 @@ azure.azcollection.azure_rm_automationrunbook:
 
 azure.azcollection.azure_rm_automationrunbook_info:
   query: >-
-    . | select(. != null) | {
+    .automation_runbook | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -715,7 +715,7 @@ azure.azcollection.azure_rm_autoscale_info:
 
 azure.azcollection.azure_rm_availabilityset:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -729,7 +729,7 @@ azure.azcollection.azure_rm_availabilityset:
 
 azure.azcollection.azure_rm_availabilityset_info:
   query: >-
-    . | select(. != null) | {
+    .azure_availabilityset | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -743,7 +743,7 @@ azure.azcollection.azure_rm_availabilityset_info:
 
 azure.azcollection.azure_rm_azurefirewall:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -757,7 +757,7 @@ azure.azcollection.azure_rm_azurefirewall:
 
 azure.azcollection.azure_rm_azurefirewall_info:
   query: >-
-    . | select(. != null) | {
+    .firewalls | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -771,7 +771,7 @@ azure.azcollection.azure_rm_azurefirewall_info:
 
 azure.azcollection.azure_rm_backupazurevm:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -785,7 +785,7 @@ azure.azcollection.azure_rm_backupazurevm:
 
 azure.azcollection.azure_rm_backupazurevm_info:
   query: >-
-    . | select(. != null) | {
+    .backupazurevms[] | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -799,7 +799,7 @@ azure.azcollection.azure_rm_backupazurevm_info:
 
 azure.azcollection.azure_rm_backuppolicy:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -813,7 +813,7 @@ azure.azcollection.azure_rm_backuppolicy:
 
 azure.azcollection.azure_rm_backuppolicy_info:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -827,7 +827,7 @@ azure.azcollection.azure_rm_backuppolicy_info:
 
 azure.azcollection.azure_rm_bastionhost:
   query: >-
-    . | select(. != null) | {
+    .bastion_host | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -841,7 +841,7 @@ azure.azcollection.azure_rm_bastionhost:
 
 azure.azcollection.azure_rm_bastionhost_info:
   query: >-
-    . | select(. != null) | {
+    .bastion_host | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -855,7 +855,7 @@ azure.azcollection.azure_rm_bastionhost_info:
 
 azure.azcollection.azure_rm_batchaccount:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -869,7 +869,7 @@ azure.azcollection.azure_rm_batchaccount:
 
 azure.azcollection.azure_rm_batchaccount_info:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -883,7 +883,7 @@ azure.azcollection.azure_rm_batchaccount_info:
 
 azure.azcollection.azure_rm_batchaccountapplication:
   query: >-
-    . | select(. != null) | {
+    .batch_account_application | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -897,7 +897,7 @@ azure.azcollection.azure_rm_batchaccountapplication:
 
 azure.azcollection.azure_rm_batchaccountapplication_info:
   query: >-
-    . | select(. != null) | {
+    .batch_account_application | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -911,7 +911,7 @@ azure.azcollection.azure_rm_batchaccountapplication_info:
 
 azure.azcollection.azure_rm_batchaccountapplicationpackage:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -925,7 +925,7 @@ azure.azcollection.azure_rm_batchaccountapplicationpackage:
 
 azure.azcollection.azure_rm_batchaccountapplicationpackage_info:
   query: >-
-    . | select(. != null) | {
+    .batch_account_application_package | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -967,7 +967,7 @@ azure.azcollection.azure_rm_batchaccountpool_info:
 
 azure.azcollection.azure_rm_capacityreservationgroup:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -981,7 +981,7 @@ azure.azcollection.azure_rm_capacityreservationgroup:
 
 azure.azcollection.azure_rm_capacityreservationgroup_info:
   query: >-
-    . | select(. != null) | {
+    .capacity_reservation_group | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -995,7 +995,7 @@ azure.azcollection.azure_rm_capacityreservationgroup_info:
 
 azure.azcollection.azure_rm_cdnendpoint:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1009,7 +1009,7 @@ azure.azcollection.azure_rm_cdnendpoint:
 
 azure.azcollection.azure_rm_cdnendpoint_info:
   query: >-
-    . | select(. != null) | {
+    .cdnendpoints | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1037,7 +1037,7 @@ azure.azcollection.azure_rm_cdnprofile:
 
 azure.azcollection.azure_rm_cdnprofile_info:
   query: >-
-    . | select(. != null) | {
+    .cdnprofiles | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1079,7 +1079,7 @@ azure.azcollection.azure_rm_cognitivesearch_info:
 
 azure.azcollection.azure_rm_containerinstance:
   query: >-
-    .containers[] | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1107,7 +1107,7 @@ azure.azcollection.azure_rm_containerinstance_info:
 
 azure.azcollection.azure_rm_containerregistry:
   query: >-
-    .tags | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1135,7 +1135,7 @@ azure.azcollection.azure_rm_containerregistry_info:
 
 azure.azcollection.azure_rm_containerregistryreplication:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1149,7 +1149,7 @@ azure.azcollection.azure_rm_containerregistryreplication:
 
 azure.azcollection.azure_rm_containerregistryreplication_info:
   query: >-
-    . | select(. != null) | {
+    .replications | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1163,7 +1163,7 @@ azure.azcollection.azure_rm_containerregistryreplication_info:
 
 azure.azcollection.azure_rm_containerregistryscopemap:
   query: >-
-    . | select(. != null) | {
+    .scope_map | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1177,7 +1177,7 @@ azure.azcollection.azure_rm_containerregistryscopemap:
 
 azure.azcollection.azure_rm_containerregistryscopemap_info:
   query: >-
-    . | select(. != null) | {
+    .registry_scope_maps | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1191,7 +1191,7 @@ azure.azcollection.azure_rm_containerregistryscopemap_info:
 
 azure.azcollection.azure_rm_containerregistrytag:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1205,7 +1205,7 @@ azure.azcollection.azure_rm_containerregistrytag:
 
 azure.azcollection.azure_rm_containerregistrytag_info:
   query: >-
-    . | select(. != null) | {
+    .repositories | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1261,7 +1261,7 @@ azure.azcollection.azure_rm_containerregistrytokenpassword:
 
 azure.azcollection.azure_rm_containerregistrywebhook:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1275,7 +1275,7 @@ azure.azcollection.azure_rm_containerregistrywebhook:
 
 azure.azcollection.azure_rm_containerregistrywebhook_info:
   query: >-
-    . | select(. != null) | {
+    .webhooks | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1289,7 +1289,7 @@ azure.azcollection.azure_rm_containerregistrywebhook_info:
 
 azure.azcollection.azure_rm_cosmosdbaccount:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1303,7 +1303,7 @@ azure.azcollection.azure_rm_cosmosdbaccount:
 
 azure.azcollection.azure_rm_cosmosdbaccount_info:
   query: >-
-    . | select(. != null) | {
+    .accounts | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1359,7 +1359,7 @@ azure.azcollection.azure_rm_ddosprotectionplan:
 
 azure.azcollection.azure_rm_ddosprotectionplan_info:
   query: >-
-    . | select(. != null) | {
+    .ddosprotectionplans[] | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1373,7 +1373,7 @@ azure.azcollection.azure_rm_ddosprotectionplan_info:
 
 azure.azcollection.azure_rm_dedicatedhost:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1387,7 +1387,7 @@ azure.azcollection.azure_rm_dedicatedhost:
 
 azure.azcollection.azure_rm_dedicatedhost_info:
   query: >-
-    . | select(. != null) | {
+    .dedicate_hosts | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1401,7 +1401,7 @@ azure.azcollection.azure_rm_dedicatedhost_info:
 
 azure.azcollection.azure_rm_deployment:
   query: >-
-    . | select(. != null) | {
+    .deployment | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1415,7 +1415,7 @@ azure.azcollection.azure_rm_deployment:
 
 azure.azcollection.azure_rm_deployment_info:
   query: >-
-    . | select(. != null) | {
+    .deployments | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1429,7 +1429,7 @@ azure.azcollection.azure_rm_deployment_info:
 
 azure.azcollection.azure_rm_devtestlab:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1443,7 +1443,7 @@ azure.azcollection.azure_rm_devtestlab:
 
 azure.azcollection.azure_rm_devtestlab_info:
   query: >-
-    . | select(. != null) | {
+    .labs | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1457,7 +1457,7 @@ azure.azcollection.azure_rm_devtestlab_info:
 
 azure.azcollection.azure_rm_devtestlabarmtemplate_info:
   query: >-
-    . | select(. != null) | {
+    .arm_templates | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1471,7 +1471,7 @@ azure.azcollection.azure_rm_devtestlabarmtemplate_info:
 
 azure.azcollection.azure_rm_devtestlabartifact_info:
   query: >-
-    . | select(. != null) | {
+    .artifacts | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1485,7 +1485,7 @@ azure.azcollection.azure_rm_devtestlabartifact_info:
 
 azure.azcollection.azure_rm_devtestlabartifactsource:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1499,7 +1499,7 @@ azure.azcollection.azure_rm_devtestlabartifactsource:
 
 azure.azcollection.azure_rm_devtestlabartifactsource_info:
   query: >-
-    . | select(. != null) | {
+    .artifactsources | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1513,7 +1513,7 @@ azure.azcollection.azure_rm_devtestlabartifactsource_info:
 
 azure.azcollection.azure_rm_devtestlabcustomimage:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1541,7 +1541,7 @@ azure.azcollection.azure_rm_devtestlabcustomimage_info:
 
 azure.azcollection.azure_rm_devtestlabenvironment:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1569,7 +1569,7 @@ azure.azcollection.azure_rm_devtestlabenvironment_info:
 
 azure.azcollection.azure_rm_devtestlabpolicy:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1583,7 +1583,7 @@ azure.azcollection.azure_rm_devtestlabpolicy:
 
 azure.azcollection.azure_rm_devtestlabpolicy_info:
   query: >-
-    . | select(. != null) | {
+    .policies | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1597,7 +1597,7 @@ azure.azcollection.azure_rm_devtestlabpolicy_info:
 
 azure.azcollection.azure_rm_devtestlabschedule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1625,7 +1625,7 @@ azure.azcollection.azure_rm_devtestlabschedule_info:
 
 azure.azcollection.azure_rm_devtestlabvirtualmachine:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .compute_id,
       canonical_facts: {
         id: .compute_id
@@ -1653,7 +1653,7 @@ azure.azcollection.azure_rm_devtestlabvirtualmachine_info:
 
 azure.azcollection.azure_rm_devtestlabvirtualnetwork:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .external_provider_resource_id,
       canonical_facts: {
         id: .external_provider_resource_id
@@ -1681,7 +1681,7 @@ azure.azcollection.azure_rm_devtestlabvirtualnetwork_info:
 
 azure.azcollection.azure_rm_diskaccess:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1695,7 +1695,7 @@ azure.azcollection.azure_rm_diskaccess:
 
 azure.azcollection.azure_rm_diskaccess_info:
   query: >-
-    . | select(. != null) | {
+    .disk_accesses | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1709,7 +1709,7 @@ azure.azcollection.azure_rm_diskaccess_info:
 
 azure.azcollection.azure_rm_diskencryptionset:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1737,7 +1737,7 @@ azure.azcollection.azure_rm_diskencryptionset_info:
 
 azure.azcollection.azure_rm_dnsrecordset:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1849,7 +1849,7 @@ azure.azcollection.azure_rm_expressroute_info:
 
 azure.azcollection.azure_rm_firewallpolicy:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1905,7 +1905,7 @@ azure.azcollection.azure_rm_functionapp_info:
 
 azure.azcollection.azure_rm_gallery:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1919,7 +1919,7 @@ azure.azcollection.azure_rm_gallery:
 
 azure.azcollection.azure_rm_gallery_info:
   query: >-
-    . | select(. != null) | {
+    .galleries | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1933,7 +1933,7 @@ azure.azcollection.azure_rm_gallery_info:
 
 azure.azcollection.azure_rm_galleryimage:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1947,7 +1947,7 @@ azure.azcollection.azure_rm_galleryimage:
 
 azure.azcollection.azure_rm_galleryimage_info:
   query: >-
-    . | select(. != null) | {
+    .images | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1961,7 +1961,7 @@ azure.azcollection.azure_rm_galleryimage_info:
 
 azure.azcollection.azure_rm_galleryimageversion:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1975,7 +1975,7 @@ azure.azcollection.azure_rm_galleryimageversion:
 
 azure.azcollection.azure_rm_galleryimageversion_info:
   query: >-
-    . | select(. != null) | {
+    .versions | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1989,7 +1989,7 @@ azure.azcollection.azure_rm_galleryimageversion_info:
 
 azure.azcollection.azure_rm_hdinsightcluster:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2003,7 +2003,7 @@ azure.azcollection.azure_rm_hdinsightcluster:
 
 azure.azcollection.azure_rm_hdinsightcluster_info:
   query: >-
-    . | select(. != null) | {
+    .clusters | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2017,7 +2017,7 @@ azure.azcollection.azure_rm_hdinsightcluster_info:
 
 azure.azcollection.azure_rm_hostgroup:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2045,7 +2045,7 @@ azure.azcollection.azure_rm_hostgroup_info:
 
 azure.azcollection.azure_rm_image:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2073,7 +2073,7 @@ azure.azcollection.azure_rm_image_info:
 
 azure.azcollection.azure_rm_imagesku_info:
   query: >-
-    . | select(. != null) | {
+    .available_skus | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2129,7 +2129,7 @@ azure.azcollection.azure_rm_iotdevicemodule:
 
 azure.azcollection.azure_rm_iothub:
   query: >-
-    .event_endpoints | select(. != null) | {
+    .id | select(. != null) | {
       name: .partition_ids,
       canonical_facts: {
         id: .partition_ids
@@ -2157,7 +2157,7 @@ azure.azcollection.azure_rm_iothub_info:
 
 azure.azcollection.azure_rm_iothubconsumergroup:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2171,7 +2171,7 @@ azure.azcollection.azure_rm_iothubconsumergroup:
 
 azure.azcollection.azure_rm_ipgroup:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2199,7 +2199,7 @@ azure.azcollection.azure_rm_ipgroup_info:
 
 azure.azcollection.azure_rm_keyvault:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2269,7 +2269,7 @@ azure.azcollection.azure_rm_keyvaultkey:
 
 azure.azcollection.azure_rm_keyvaultkey_info:
   query: >-
-    . | select(. != null) | {
+    .keyvaults | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2297,7 +2297,7 @@ azure.azcollection.azure_rm_keyvaultsecret:
 
 azure.azcollection.azure_rm_keyvaultsecret_info:
   query: >-
-    . | select(. != null) | {
+    .secrets | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2311,7 +2311,7 @@ azure.azcollection.azure_rm_keyvaultsecret_info:
 
 azure.azcollection.azure_rm_keyvaultsecuritydomain:
   query: >-
-    . | select(. != null) | {
+    .security_domain | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2353,7 +2353,7 @@ azure.azcollection.azure_rm_loadbalancer_info:
 
 azure.azcollection.azure_rm_localnetworkgateway:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2367,7 +2367,7 @@ azure.azcollection.azure_rm_localnetworkgateway:
 
 azure.azcollection.azure_rm_localnetworkgateway_info:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2381,7 +2381,7 @@ azure.azcollection.azure_rm_localnetworkgateway_info:
 
 azure.azcollection.azure_rm_lock:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2395,7 +2395,7 @@ azure.azcollection.azure_rm_lock:
 
 azure.azcollection.azure_rm_lock_info:
   query: >-
-    . | select(. != null) | {
+    .locks | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2409,7 +2409,7 @@ azure.azcollection.azure_rm_lock_info:
 
 azure.azcollection.azure_rm_loganalyticsworkspace:
   query: >-
-    .intelligence_packs[] | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2423,7 +2423,7 @@ azure.azcollection.azure_rm_loganalyticsworkspace:
 
 azure.azcollection.azure_rm_loganalyticsworkspace_info:
   query: >-
-    .intelligence_packs[] | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2465,7 +2465,7 @@ azure.azcollection.azure_rm_manageddisk_info:
 
 azure.azcollection.azure_rm_managementgroup:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .tenant_id,
       canonical_facts: {
         id: .tenant_id
@@ -2493,7 +2493,7 @@ azure.azcollection.azure_rm_managementgroup_info:
 
 azure.azcollection.azure_rm_mariadbconfiguration:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2507,7 +2507,7 @@ azure.azcollection.azure_rm_mariadbconfiguration:
 
 azure.azcollection.azure_rm_mariadbconfiguration_info:
   query: >-
-    . | select(. != null) | {
+    .settings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2521,7 +2521,7 @@ azure.azcollection.azure_rm_mariadbconfiguration_info:
 
 azure.azcollection.azure_rm_mariadbdatabase:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2535,7 +2535,7 @@ azure.azcollection.azure_rm_mariadbdatabase:
 
 azure.azcollection.azure_rm_mariadbdatabase_info:
   query: >-
-    . | select(. != null) | {
+    .databases | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2549,7 +2549,7 @@ azure.azcollection.azure_rm_mariadbdatabase_info:
 
 azure.azcollection.azure_rm_mariadbfirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2563,7 +2563,7 @@ azure.azcollection.azure_rm_mariadbfirewallrule:
 
 azure.azcollection.azure_rm_mariadbfirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2577,7 +2577,7 @@ azure.azcollection.azure_rm_mariadbfirewallrule_info:
 
 azure.azcollection.azure_rm_mariadbserver:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2591,7 +2591,7 @@ azure.azcollection.azure_rm_mariadbserver:
 
 azure.azcollection.azure_rm_mariadbserver_info:
   query: >-
-    . | select(. != null) | {
+    .servers | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2773,7 +2773,7 @@ azure.azcollection.azure_rm_monitordiagnosticsetting_info:
 
 azure.azcollection.azure_rm_monitorlogprofile:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2857,7 +2857,7 @@ azure.azcollection.azure_rm_multiplemanageddisks:
 
 azure.azcollection.azure_rm_mysqlconfiguration:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2871,7 +2871,7 @@ azure.azcollection.azure_rm_mysqlconfiguration:
 
 azure.azcollection.azure_rm_mysqlconfiguration_info:
   query: >-
-    . | select(. != null) | {
+    .settings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2885,7 +2885,7 @@ azure.azcollection.azure_rm_mysqlconfiguration_info:
 
 azure.azcollection.azure_rm_mysqldatabase:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2899,7 +2899,7 @@ azure.azcollection.azure_rm_mysqldatabase:
 
 azure.azcollection.azure_rm_mysqldatabase_info:
   query: >-
-    . | select(. != null) | {
+    .databases | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2913,7 +2913,7 @@ azure.azcollection.azure_rm_mysqldatabase_info:
 
 azure.azcollection.azure_rm_mysqlfirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2927,7 +2927,7 @@ azure.azcollection.azure_rm_mysqlfirewallrule:
 
 azure.azcollection.azure_rm_mysqlfirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2941,7 +2941,7 @@ azure.azcollection.azure_rm_mysqlfirewallrule_info:
 
 azure.azcollection.azure_rm_mysqlflexibleconfiguration:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2955,7 +2955,7 @@ azure.azcollection.azure_rm_mysqlflexibleconfiguration:
 
 azure.azcollection.azure_rm_mysqlflexibleconfiguration_info:
   query: >-
-    . | select(. != null) | {
+    .settings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2969,7 +2969,7 @@ azure.azcollection.azure_rm_mysqlflexibleconfiguration_info:
 
 azure.azcollection.azure_rm_mysqlflexibledatabase:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2983,7 +2983,7 @@ azure.azcollection.azure_rm_mysqlflexibledatabase:
 
 azure.azcollection.azure_rm_mysqlflexibledatabase_info:
   query: >-
-    . | select(. != null) | {
+    .databases | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2997,7 +2997,7 @@ azure.azcollection.azure_rm_mysqlflexibledatabase_info:
 
 azure.azcollection.azure_rm_mysqlflexiblefirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3011,7 +3011,7 @@ azure.azcollection.azure_rm_mysqlflexiblefirewallrule:
 
 azure.azcollection.azure_rm_mysqlflexiblefirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3053,7 +3053,7 @@ azure.azcollection.azure_rm_mysqlflexibleserver_info:
 
 azure.azcollection.azure_rm_mysqlserver:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3067,7 +3067,7 @@ azure.azcollection.azure_rm_mysqlserver:
 
 azure.azcollection.azure_rm_mysqlserver_info:
   query: >-
-    . | select(. != null) | {
+    .servers | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3081,7 +3081,7 @@ azure.azcollection.azure_rm_mysqlserver_info:
 
 azure.azcollection.azure_rm_natgateway:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3137,7 +3137,7 @@ azure.azcollection.azure_rm_networkflowlog_info:
 
 azure.azcollection.azure_rm_networkinterface:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3165,7 +3165,7 @@ azure.azcollection.azure_rm_networkinterface_info:
 
 azure.azcollection.azure_rm_networkwatcher:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3179,7 +3179,7 @@ azure.azcollection.azure_rm_networkwatcher:
 
 azure.azcollection.azure_rm_networkwatcher_info:
   query: >-
-    . | select(. != null) | {
+    .network_watchers | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3221,7 +3221,7 @@ azure.azcollection.azure_rm_notificationhub_info:
 
 azure.azcollection.azure_rm_openshiftmanagedcluster:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .disk_encryption_set_id,
       canonical_facts: {
         id: .disk_encryption_set_id
@@ -3235,7 +3235,7 @@ azure.azcollection.azure_rm_openshiftmanagedcluster:
 
 azure.azcollection.azure_rm_openshiftmanagedcluster_info:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .disk_encryption_set_id,
       canonical_facts: {
         id: .disk_encryption_set_id
@@ -3249,7 +3249,7 @@ azure.azcollection.azure_rm_openshiftmanagedcluster_info:
 
 azure.azcollection.azure_rm_openshiftmanagedclusterkubeconfig_info:
   query: >-
-    . | select(. != null) | {
+    .kubeconfig | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3277,7 +3277,7 @@ azure.azcollection.azure_rm_openshiftmanagedclusterversion_info:
 
 azure.azcollection.azure_rm_postgresqlconfiguration:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3291,7 +3291,7 @@ azure.azcollection.azure_rm_postgresqlconfiguration:
 
 azure.azcollection.azure_rm_postgresqlconfiguration_info:
   query: >-
-    . | select(. != null) | {
+    .settings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3305,7 +3305,7 @@ azure.azcollection.azure_rm_postgresqlconfiguration_info:
 
 azure.azcollection.azure_rm_postgresqldatabase:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3319,7 +3319,7 @@ azure.azcollection.azure_rm_postgresqldatabase:
 
 azure.azcollection.azure_rm_postgresqldatabase_info:
   query: >-
-    . | select(. != null) | {
+    .databases | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3333,7 +3333,7 @@ azure.azcollection.azure_rm_postgresqldatabase_info:
 
 azure.azcollection.azure_rm_postgresqlfirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3347,7 +3347,7 @@ azure.azcollection.azure_rm_postgresqlfirewallrule:
 
 azure.azcollection.azure_rm_postgresqlfirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3389,7 +3389,7 @@ azure.azcollection.azure_rm_postgresqlflexibleadministrator_info:
 
 azure.azcollection.azure_rm_postgresqlflexiblebackup:
   query: >-
-    . | select(. != null) | {
+    .backup | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3403,7 +3403,7 @@ azure.azcollection.azure_rm_postgresqlflexiblebackup:
 
 azure.azcollection.azure_rm_postgresqlflexiblebackup_info:
   query: >-
-    . | select(. != null) | {
+    .backup | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3417,7 +3417,7 @@ azure.azcollection.azure_rm_postgresqlflexiblebackup_info:
 
 azure.azcollection.azure_rm_postgresqlflexibleconfiguration_info:
   query: >-
-    . | select(. != null) | {
+    .settings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3431,7 +3431,7 @@ azure.azcollection.azure_rm_postgresqlflexibleconfiguration_info:
 
 azure.azcollection.azure_rm_postgresqlflexibledatabase:
   query: >-
-    . | select(. != null) | {
+    .database | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3445,7 +3445,7 @@ azure.azcollection.azure_rm_postgresqlflexibledatabase:
 
 azure.azcollection.azure_rm_postgresqlflexibledatabase_info:
   query: >-
-    . | select(. != null) | {
+    .database | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3459,7 +3459,7 @@ azure.azcollection.azure_rm_postgresqlflexibledatabase_info:
 
 azure.azcollection.azure_rm_postgresqlflexiblefirewallrule:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3473,7 +3473,7 @@ azure.azcollection.azure_rm_postgresqlflexiblefirewallrule:
 
 azure.azcollection.azure_rm_postgresqlflexiblefirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3515,7 +3515,7 @@ azure.azcollection.azure_rm_postgresqlflexibleserver_info:
 
 azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint:
   query: >-
-    . | select(. != null) | {
+    .virtual_endpoint | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3529,7 +3529,7 @@ azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint:
 
 azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint_info:
   query: >-
-    . | select(. != null) | {
+    .virtual_endpoints | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3543,7 +3543,7 @@ azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint_info:
 
 azure.azcollection.azure_rm_postgresqlserver:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3557,7 +3557,7 @@ azure.azcollection.azure_rm_postgresqlserver:
 
 azure.azcollection.azure_rm_postgresqlserver_info:
   query: >-
-    . | select(. != null) | {
+    .servers | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3571,7 +3571,7 @@ azure.azcollection.azure_rm_postgresqlserver_info:
 
 azure.azcollection.azure_rm_privatednsrecordset:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3627,7 +3627,7 @@ azure.azcollection.azure_rm_privatednszone_info:
 
 azure.azcollection.azure_rm_privatednszonelink:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3739,7 +3739,7 @@ azure.azcollection.azure_rm_privateendpointdnszonegroup_info:
 
 azure.azcollection.azure_rm_privatelinkservice:
   query: >-
-    . | select(. != null) | {
+    .link_service | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3753,7 +3753,7 @@ azure.azcollection.azure_rm_privatelinkservice:
 
 azure.azcollection.azure_rm_privatelinkservice_info:
   query: >-
-    . | select(. != null) | {
+    .link_service | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3767,7 +3767,7 @@ azure.azcollection.azure_rm_privatelinkservice_info:
 
 azure.azcollection.azure_rm_proximityplacementgroup:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3795,7 +3795,7 @@ azure.azcollection.azure_rm_proximityplacementgroup_info:
 
 azure.azcollection.azure_rm_publicipaddress:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3851,7 +3851,7 @@ azure.azcollection.azure_rm_publicipprefix_info:
 
 azure.azcollection.azure_rm_recoveryservicesvault:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3865,7 +3865,7 @@ azure.azcollection.azure_rm_recoveryservicesvault:
 
 azure.azcollection.azure_rm_recoveryservicesvault_info:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3879,7 +3879,7 @@ azure.azcollection.azure_rm_recoveryservicesvault_info:
 
 azure.azcollection.azure_rm_recoveryservicesvaultconfig:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3893,7 +3893,7 @@ azure.azcollection.azure_rm_recoveryservicesvaultconfig:
 
 azure.azcollection.azure_rm_recoveryservicesvaultconfig_info:
   query: >-
-    .properties | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3907,7 +3907,7 @@ azure.azcollection.azure_rm_recoveryservicesvaultconfig_info:
 
 azure.azcollection.azure_rm_rediscache:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3921,7 +3921,7 @@ azure.azcollection.azure_rm_rediscache:
 
 azure.azcollection.azure_rm_rediscache_info:
   query: >-
-    . | select(. != null) | {
+    .rediscaches | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -3935,7 +3935,7 @@ azure.azcollection.azure_rm_rediscache_info:
 
 azure.azcollection.azure_rm_rediscachefirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4005,7 +4005,7 @@ azure.azcollection.azure_rm_registrationdefinition_info:
 
 azure.azcollection.azure_rm_resource:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4019,7 +4019,7 @@ azure.azcollection.azure_rm_resource:
 
 azure.azcollection.azure_rm_resource_info:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4033,7 +4033,7 @@ azure.azcollection.azure_rm_resource_info:
 
 azure.azcollection.azure_rm_resourcegroup:
   query: >-
-    . | select(. != null) | {
+    .contains_resources | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4061,7 +4061,7 @@ azure.azcollection.azure_rm_resourcegroup_info:
 
 azure.azcollection.azure_rm_resourcehealthstates_info:
   query: >-
-    . | select(. != null) | {
+    .health_states | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4075,7 +4075,7 @@ azure.azcollection.azure_rm_resourcehealthstates_info:
 
 azure.azcollection.azure_rm_roleassignment:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .assignee_object_id,
       canonical_facts: {
         id: .assignee_object_id
@@ -4103,7 +4103,7 @@ azure.azcollection.azure_rm_roleassignment_info:
 
 azure.azcollection.azure_rm_roledefinition:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4117,7 +4117,7 @@ azure.azcollection.azure_rm_roledefinition:
 
 azure.azcollection.azure_rm_roledefinition_info:
   query: >-
-    . | select(. != null) | {
+    .roledefinitions | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4131,7 +4131,7 @@ azure.azcollection.azure_rm_roledefinition_info:
 
 azure.azcollection.azure_rm_route:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4145,7 +4145,7 @@ azure.azcollection.azure_rm_route:
 
 azure.azcollection.azure_rm_route_info:
   query: >-
-    . | select(. != null) | {
+    .routes | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4159,7 +4159,7 @@ azure.azcollection.azure_rm_route_info:
 
 azure.azcollection.azure_rm_routetable:
   query: >-
-    . | select(. != null) | {
+    .changed | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4173,7 +4173,7 @@ azure.azcollection.azure_rm_routetable:
 
 azure.azcollection.azure_rm_routetable_info:
   query: >-
-    .tags | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4187,7 +4187,7 @@ azure.azcollection.azure_rm_routetable_info:
 
 azure.azcollection.azure_rm_securitygroup:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4201,7 +4201,7 @@ azure.azcollection.azure_rm_securitygroup:
 
 azure.azcollection.azure_rm_securitygroup_info:
   query: >-
-    . | select(. != null) | {
+    .securitygroups | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4215,7 +4215,7 @@ azure.azcollection.azure_rm_securitygroup_info:
 
 azure.azcollection.azure_rm_servicebus:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4243,7 +4243,7 @@ azure.azcollection.azure_rm_servicebus_info:
 
 azure.azcollection.azure_rm_servicebusqueue:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4257,7 +4257,7 @@ azure.azcollection.azure_rm_servicebusqueue:
 
 azure.azcollection.azure_rm_servicebussaspolicy:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4271,7 +4271,7 @@ azure.azcollection.azure_rm_servicebussaspolicy:
 
 azure.azcollection.azure_rm_servicebustopic:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4285,7 +4285,7 @@ azure.azcollection.azure_rm_servicebustopic:
 
 azure.azcollection.azure_rm_servicebustopicsubscription:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4327,7 +4327,7 @@ azure.azcollection.azure_rm_serviceendpointpolicy_info:
 
 azure.azcollection.azure_rm_serviceendpointpolicydefinition:
   query: >-
-    . | select(. != null) | {
+    .serviceendpointpolicydefinition | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4341,7 +4341,7 @@ azure.azcollection.azure_rm_serviceendpointpolicydefinition:
 
 azure.azcollection.azure_rm_serviceendpointpolicydefinition_info:
   query: >-
-    . | select(. != null) | {
+    .serviceendpointpolicydefinitions | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4355,7 +4355,7 @@ azure.azcollection.azure_rm_serviceendpointpolicydefinition_info:
 
 azure.azcollection.azure_rm_snapshot:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4369,7 +4369,7 @@ azure.azcollection.azure_rm_snapshot:
 
 azure.azcollection.azure_rm_snapshot_info:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4383,7 +4383,7 @@ azure.azcollection.azure_rm_snapshot_info:
 
 azure.azcollection.azure_rm_sqldatabase:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .database_id,
       canonical_facts: {
         id: .database_id
@@ -4397,7 +4397,7 @@ azure.azcollection.azure_rm_sqldatabase:
 
 azure.azcollection.azure_rm_sqldatabase_info:
   query: >-
-    . | select(. != null) | {
+    .databases | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4439,7 +4439,7 @@ azure.azcollection.azure_rm_sqlelasticpool_info:
 
 azure.azcollection.azure_rm_sqlfirewallrule:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4453,7 +4453,7 @@ azure.azcollection.azure_rm_sqlfirewallrule:
 
 azure.azcollection.azure_rm_sqlfirewallrule_info:
   query: >-
-    . | select(. != null) | {
+    .rules | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4523,7 +4523,7 @@ azure.azcollection.azure_rm_sqlmidatabase_info:
 
 azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy:
   query: >-
-    . | select(. != null) | {
+    .long_term_retention_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4537,7 +4537,7 @@ azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy:
 
 azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy_info:
   query: >-
-    . | select(. != null) | {
+    .short_term_retention_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4551,7 +4551,7 @@ azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy_info:
 
 azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy:
   query: >-
-    . | select(. != null) | {
+    .short_term_retention_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4565,7 +4565,7 @@ azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy:
 
 azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy_info:
   query: >-
-    . | select(. != null) | {
+    .short_term_retention_policy | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4579,7 +4579,7 @@ azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy_info:
 
 azure.azcollection.azure_rm_sqlserver:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4607,7 +4607,7 @@ azure.azcollection.azure_rm_sqlserver_info:
 
 azure.azcollection.azure_rm_sshpublickey:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4621,7 +4621,7 @@ azure.azcollection.azure_rm_sshpublickey:
 
 azure.azcollection.azure_rm_sshpublickey_info:
   query: >-
-    . | select(. != null) | {
+    .ssh_keys | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4663,7 +4663,7 @@ azure.azcollection.azure_rm_storageaccount_info:
 
 azure.azcollection.azure_rm_storageaccountmanagementpolicy:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4677,7 +4677,7 @@ azure.azcollection.azure_rm_storageaccountmanagementpolicy:
 
 azure.azcollection.azure_rm_storageaccountmanagementpolicy_info:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4719,7 +4719,7 @@ azure.azcollection.azure_rm_storageblob_info:
 
 azure.azcollection.azure_rm_storageshare:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4733,7 +4733,7 @@ azure.azcollection.azure_rm_storageshare:
 
 azure.azcollection.azure_rm_storageshare_info:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4747,7 +4747,7 @@ azure.azcollection.azure_rm_storageshare_info:
 
 azure.azcollection.azure_rm_subnet:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4761,7 +4761,7 @@ azure.azcollection.azure_rm_subnet:
 
 azure.azcollection.azure_rm_subnet_info:
   query: >-
-    . | select(. != null) | {
+    .subnets | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4789,7 +4789,7 @@ azure.azcollection.azure_rm_subscription_info:
 
 azure.azcollection.azure_rm_tags:
   query: >-
-    . | select(. != null) | {
+    .tag_info | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4803,7 +4803,7 @@ azure.azcollection.azure_rm_tags:
 
 azure.azcollection.azure_rm_tags_info:
   query: >-
-    . | select(. != null) | {
+    .tag_details | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4831,7 +4831,7 @@ azure.azcollection.azure_rm_trafficmanager:
 
 azure.azcollection.azure_rm_trafficmanagerendpoint:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4859,7 +4859,7 @@ azure.azcollection.azure_rm_trafficmanagerendpoint_info:
 
 azure.azcollection.azure_rm_trafficmanagerprofile:
   query: >-
-    .endpoints[] | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4887,7 +4887,7 @@ azure.azcollection.azure_rm_trafficmanagerprofile_info:
 
 azure.azcollection.azure_rm_virtualhub:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4901,7 +4901,7 @@ azure.azcollection.azure_rm_virtualhub:
 
 azure.azcollection.azure_rm_virtualhub_info:
   query: >-
-    . | select(. != null) | {
+    .virtual_hubs | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4915,7 +4915,7 @@ azure.azcollection.azure_rm_virtualhub_info:
 
 azure.azcollection.azure_rm_virtualhubconnection:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4929,7 +4929,7 @@ azure.azcollection.azure_rm_virtualhubconnection:
 
 azure.azcollection.azure_rm_virtualhubconnection_info:
   query: >-
-    . | select(. != null) | {
+    .virtual_hub_connection | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4943,7 +4943,7 @@ azure.azcollection.azure_rm_virtualhubconnection_info:
 
 azure.azcollection.azure_rm_virtualmachine:
   query: >-
-    .deleted_vhd_uris[] | {
+    .powerstate | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -4985,7 +4985,7 @@ azure.azcollection.azure_rm_virtualmachineextension:
 
 azure.azcollection.azure_rm_virtualmachineextension_info:
   query: >-
-    . | select(. != null) | {
+    .extensions | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5041,7 +5041,7 @@ azure.azcollection.azure_rm_virtualmachinescaleset_info:
 
 azure.azcollection.azure_rm_virtualmachinescalesetextension:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5055,7 +5055,7 @@ azure.azcollection.azure_rm_virtualmachinescalesetextension:
 
 azure.azcollection.azure_rm_virtualmachinescalesetextension_info:
   query: >-
-    . | select(. != null) | {
+    .extensions | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5069,7 +5069,7 @@ azure.azcollection.azure_rm_virtualmachinescalesetextension_info:
 
 azure.azcollection.azure_rm_virtualmachinescalesetinstance:
   query: >-
-    . | select(. != null) | {
+    .instances | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5097,7 +5097,7 @@ azure.azcollection.azure_rm_virtualmachinescalesetinstance_info:
 
 azure.azcollection.azure_rm_virtualmachinesize_info:
   query: >-
-    . | select(. != null) | {
+    .sizes | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5111,7 +5111,7 @@ azure.azcollection.azure_rm_virtualmachinesize_info:
 
 azure.azcollection.azure_rm_virtualnetwork:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5139,7 +5139,7 @@ azure.azcollection.azure_rm_virtualnetwork_info:
 
 azure.azcollection.azure_rm_virtualnetworkgateway:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5153,7 +5153,7 @@ azure.azcollection.azure_rm_virtualnetworkgateway:
 
 azure.azcollection.azure_rm_virtualnetworkgateway_info:
   query: >-
-    . | select(. != null) | {
+    .virtual_network_gatways | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5167,7 +5167,7 @@ azure.azcollection.azure_rm_virtualnetworkgateway_info:
 
 azure.azcollection.azure_rm_virtualnetworkgatewayconnection:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5181,7 +5181,7 @@ azure.azcollection.azure_rm_virtualnetworkgatewayconnection:
 
 azure.azcollection.azure_rm_virtualnetworkgatewayconnection_info:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5223,7 +5223,7 @@ azure.azcollection.azure_rm_virtualnetworkgatewaynatrule_info:
 
 azure.azcollection.azure_rm_virtualnetworkpeering:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5237,7 +5237,7 @@ azure.azcollection.azure_rm_virtualnetworkpeering:
 
 azure.azcollection.azure_rm_virtualnetworkpeering_info:
   query: >-
-    . | select(. != null) | {
+    .vnetpeerings | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5251,7 +5251,7 @@ azure.azcollection.azure_rm_virtualnetworkpeering_info:
 
 azure.azcollection.azure_rm_virtualwan:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5265,7 +5265,7 @@ azure.azcollection.azure_rm_virtualwan:
 
 azure.azcollection.azure_rm_virtualwan_info:
   query: >-
-    . | select(. != null) | {
+    .virtual_wans | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5279,7 +5279,7 @@ azure.azcollection.azure_rm_virtualwan_info:
 
 azure.azcollection.azure_rm_vmbackuppolicy:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5293,7 +5293,7 @@ azure.azcollection.azure_rm_vmbackuppolicy:
 
 azure.azcollection.azure_rm_vmbackuppolicy_info:
   query: >-
-    . | select(. != null) | {
+    .response | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5307,7 +5307,7 @@ azure.azcollection.azure_rm_vmbackuppolicy_info:
 
 azure.azcollection.azure_rm_vmsku_info:
   query: >-
-    . | select(. != null) | {
+    .available_skus | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5321,7 +5321,7 @@ azure.azcollection.azure_rm_vmsku_info:
 
 azure.azcollection.azure_rm_vmssnetworkinterface_info:
   query: >-
-    . | select(. != null) | {
+    .vmss_networkinterfaces | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5335,7 +5335,7 @@ azure.azcollection.azure_rm_vmssnetworkinterface_info:
 
 azure.azcollection.azure_rm_vpnsite:
   query: >-
-    . | select(. != null) | {
+    .state | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5349,7 +5349,7 @@ azure.azcollection.azure_rm_vpnsite:
 
 azure.azcollection.azure_rm_vpnsite_info:
   query: >-
-    . | select(. != null) | {
+    .vpn_sites | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5363,7 +5363,7 @@ azure.azcollection.azure_rm_vpnsite_info:
 
 azure.azcollection.azure_rm_vpnsitelink_info:
   query: >-
-    . | select(. != null) | {
+    .vpn_site_links | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5377,7 +5377,7 @@ azure.azcollection.azure_rm_vpnsitelink_info:
 
 azure.azcollection.azure_rm_webapp:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5391,7 +5391,7 @@ azure.azcollection.azure_rm_webapp:
 
 azure.azcollection.azure_rm_webapp_info:
   query: >-
-    . | select(. != null) | {
+    .webapps | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -5433,7 +5433,7 @@ azure.azcollection.azure_rm_webappaccessrestriction_info:
 
 azure.azcollection.azure_rm_webappslot:
   query: >-
-    . | select(. != null) | {
+    .id | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id

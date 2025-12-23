@@ -1,0 +1,2558 @@
+==============================================================================
+EVENT QUERY GENERATION REPORT: azure.azcollection
+==============================================================================
+
+SUMMARY
+------------------------------------------------------------------------------
+Total modules analyzed:     391
+High confidence detection:   74  (explicit type in RETURN doc)
+Medium confidence:            0  (inferred from sample data)
+Low confidence:             317  (guessed - NEEDS REVIEW)
+No container detected:        0  (using generic fallback)
+
+
+==============================================================================
+HIGH CONFIDENCE DETECTIONS (no action needed)
+==============================================================================
+  azure_rm_account_info                    → .account_info
+  azure_rm_adpassword_info                 → .passwords
+  azure_rm_adserviceprincipal_info         → .service_principals[]
+  azure_rm_aks                             → .state
+  azure_rm_aks_info                        → .azure_aks[]
+  azure_rm_aksagentpoolversion_info        → .azure_orchestrator_version[]
+  azure_rm_aksversion_info                 → .azure_aks_versions[]
+  azure_rm_appgateway_info                 → .gateways[]
+  azure_rm_appserviceplan                  → .azure_appserviceplan
+  azure_rm_autoscale                       → .state
+  azure_rm_autoscale_info                  → .autoscales[]
+  azure_rm_batchaccountpool                → .state
+  azure_rm_batchaccountpool_info           → .batch_account_pool
+  azure_rm_cdnprofile                      → .id
+  azure_rm_cognitivesearch                 → .state
+  azure_rm_cognitivesearch_info            → .search[]
+  azure_rm_containerregistrytokenpassword  → .passwords[]
+  azure_rm_ddosprotectionplan              → .state
+  azure_rm_diskencryptionset_info          → .diskencryptionsets[]
+  azure_rm_dnsrecordset_info               → .azure_dnsrecordset[]
+  azure_rm_dnszone                         → .state
+  azure_rm_dnszone_info                    → .azure_dnszones[]
+  azure_rm_eventhub                        → .state
+  azure_rm_eventhub_info                   → .state
+  azure_rm_expressroute                    → .state
+  azure_rm_expressroute_info               → .state
+  azure_rm_firewallpolicy_info             → .firewallpolicies[]
+  azure_rm_functionapp                     → .state
+  azure_rm_functionapp_info                → .azure_functionapps[]
+  azure_rm_hostgroup_info                  → .hostgroups[]
+  azure_rm_iotdevice                       → .device
+  azure_rm_iotdevice_info                  → .iot_devices
+  azure_rm_iotdevicemodule                 → .module
+  azure_rm_ipgroup_info                    → .ipgroups[]
+  azure_rm_keyvault_info                   → .keyvaults[]
+  azure_rm_loadbalancer                    → .state
+  azure_rm_loadbalancer_info               → .loadbalancers[]
+  azure_rm_manageddisk_info                → .azure_managed_disk[]
+  azure_rm_managementgroup_info            → .management_groups[]
+  azure_rm_monitoractiongroups             → .actiongroup
+  azure_rm_monitoractiongroups_info        → .actiongroups[]
+  azure_rm_monitoractivitylogalerts        → .activitylogalert
+  azure_rm_monitoractivitylogalerts_info   → .activitylogalerts[]
+  azure_rm_monitordatacollectionrules      → .datacollectionrule
+  azure_rm_monitordatacollectionrules_info → .datacollectionrules[]
+  azure_rm_monitordiagnosticsetting        → .state
+  azure_rm_monitordiagnosticsetting_info   → .settings[]
+  azure_rm_monitormetricalerts             → .metricalert
+  azure_rm_monitormetricalerts_info        → .metricalerts[]
+  azure_rm_monitorscheduledqueryrules      → .scheduledqueryrule
+  azure_rm_monitorscheduledqueryrules_info → .scheduledqueryrules[]
+  azure_rm_natgateway_info                 → .gateways[]
+  azure_rm_notificationhub                 → .state
+  azure_rm_notificationhub_info            → .state
+  azure_rm_openshiftmanagedclusterversion_info → .versions[]
+  azure_rm_privatednsrecordset_info        → .dnsrecordsets[]
+  azure_rm_privatednszone                  → .state
+  azure_rm_privatednszone_info             → .azure_privatednszones[]
+  azure_rm_privatednszonelink_info         → .virtualnetworklinks[]
+  azure_rm_proximityplacementgroup_info    → .proximityplacementgroups[]
+  azure_rm_publicipaddress_info            → .azure_publicipaddresses[]
+  azure_rm_resourcegroup_info              → .resourcegroups[]
+  azure_rm_storageaccount_info             → .azure_storageaccounts[]
+  azure_rm_storageblob                     → .blob
+  azure_rm_storageblob_info                → .blob
+  azure_rm_subscription_info               → .subscriptions[]
+  azure_rm_trafficmanager                  → .state
+  azure_rm_virtualmachineextension         → .state
+  azure_rm_virtualmachineimage_info        → .azure_vmimages[]
+  azure_rm_virtualmachinescaleset          → .azure_vmss
+  azure_rm_virtualmachinescaleset_info     → .vmss[]
+  azure_rm_virtualnetwork_info             → .azure_virtualnetworks[]
+  azure_rm_webappaccessrestriction         → .ip_security_restrictions[]
+  azure_rm_webappaccessrestriction_info    → .ip_security_restrictions[]
+
+==============================================================================
+LOW CONFIDENCE - MANUAL REVIEW REQUIRED
+==============================================================================
+
+The following modules have uncertain container type detection.
+Please verify the container name and type (list vs dict) are correct.
+
+Module: azure.azcollection.azure_rm_accesstoken_info
+  Detected container: access_token
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .access_token | select(. != null) | {...}
+  ⚠ Container type for 'access_token' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_adapplication
+  Detected container: display_name
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .display_name | select(. != null) | {...}
+  ⚠ Container type for 'display_name' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_adapplication_info
+  Detected container: applications
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .applications | select(. != null) | {...}
+  ⚠ Container type for 'applications' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_adgroup
+  Detected container: object_id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .object_id | select(. != null) | {...}
+  ⚠ Container type for 'object_id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_adgroup_info
+  Detected container: object_id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .object_id | select(. != null) | {...}
+  ⚠ Container type for 'object_id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_adpassword
+  Detected container: end_date
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .end_date | select(. != null) | {...}
+  ⚠ Container type for 'end_date' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_adserviceprincipal
+  Detected container: app_display_name
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .app_display_name | select(. != null) | {...}
+  ⚠ Container type for 'app_display_name' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_aduser
+  Detected container: object_id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .object_id | select(. != null) | {...}
+  ⚠ Container type for 'object_id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_aduser_info
+  Detected container: object_id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .object_id | select(. != null) | {...}
+  ⚠ Container type for 'object_id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_afdendpoint
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdendpoint_info
+  Detected container: afdendpoints
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdendpoints | select(. != null) | {...}
+  ⚠ Container type for 'afdendpoints' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdorigin
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdorigin_info
+  Detected container: afdorigins
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdorigins | select(. != null) | {...}
+  ⚠ Container type for 'afdorigins' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_afdorigingroup
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdorigingroup_info
+  Detected container: afdorigingroups
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdorigingroups | select(. != null) | {...}
+  ⚠ Container type for 'afdorigingroups' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdroute
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdroute_info
+  Detected container: afdroutes
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdroutes | select(. != null) | {...}
+  ⚠ Container type for 'afdroutes' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_afdrules
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdrules_info
+  Detected container: afdrules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdrules | select(. != null) | {...}
+  ⚠ Container type for 'afdrules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdruleset
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_afdruleset_info
+  Detected container: afdrulesets
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .afdrulesets | select(. != null) | {...}
+  ⚠ Container type for 'afdrulesets' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_aksagentpool
+  Detected container: aks_agent_pools
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .aks_agent_pools | select(. != null) | {...}
+  ⚠ Container type for 'aks_agent_pools' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_aksagentpool_info
+  Detected container: aks_agent_pools
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .aks_agent_pools | select(. != null) | {...}
+  ⚠ Container type for 'aks_agent_pools' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_akscredentials_info
+  Detected container: cluster_credentials
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .cluster_credentials | select(. != null) | {...}
+  ⚠ Container type for 'cluster_credentials' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_aksupgrade_info
+  Detected container: azure_aks_upgrades
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .azure_aks_upgrades | select(. != null) | {...}
+  ⚠ Container type for 'azure_aks_upgrades' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_apimanagement
+  Detected container: state
+  Detected type:      dict
+  Detection source:   name_inference
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container inferred from module name: Azure action module pattern
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_apimanagement_info
+  Detected container: api
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .api | select(. != null) | {...}
+  ⚠ Container type for 'api' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_apimanagementservice
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_apimanagementservice_info
+  Detected container: api_management_service
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .api_management_service | select(. != null) | {...}
+  ⚠ Container type for 'api_management_service' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_appgateway
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_applicationfirewallpolicy
+  Detected container: firewall_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .firewall_policy | select(. != null) | {...}
+  ⚠ Container type for 'firewall_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_applicationfirewallpolicy_info
+  Detected container: firewall_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .firewall_policy | select(. != null) | {...}
+  ⚠ Container type for 'firewall_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_applicationsecuritygroup
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_applicationsecuritygroup_info
+  Detected container: applicationsecuritygroups
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .applicationsecuritygroups | select(. != null) | {...}
+  ⚠ Container type for 'applicationsecuritygroups' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_appserviceplan_info
+  Detected container: appserviceplans
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .appserviceplans | select(. != null) | {...}
+  ⚠ Container type for 'appserviceplans' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_arcssh
+  Detected container: state
+  Detected type:      dict
+  Detection source:   name_inference
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container inferred from module name: Azure action module pattern
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_automationaccount
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_automationaccount_info
+  Detected container: automation_accounts
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .automation_accounts | select(. != null) | {...}
+  ⚠ Container type for 'automation_accounts' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_automationrunbook
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_automationrunbook_info
+  Detected container: automation_runbook
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .automation_runbook | select(. != null) | {...}
+  ⚠ Container type for 'automation_runbook' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_availabilityset
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_availabilityset_info
+  Detected container: azure_availabilityset
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .azure_availabilityset | select(. != null) | {...}
+  ⚠ Container type for 'azure_availabilityset' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_azurefirewall
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_azurefirewall_info
+  Detected container: firewalls
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .firewalls | select(. != null) | {...}
+  ⚠ Container type for 'firewalls' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_backupazurevm
+  Detected container: state
+  Detected type:      dict
+  Detection source:   name_inference
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container inferred from module name: Azure action module pattern
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_backupazurevm_info
+  Detected container: backupazurevms
+  Detected type:      list
+  Detection source:   name_inference
+  Generated query:    .backupazurevms[] | {...}
+  ⚠ Container inferred from module name: UNVERIFIED Azure pattern: backupazurevm (needs review)
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_backuppolicy
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_backuppolicy_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_bastionhost
+  Detected container: bastion_host
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .bastion_host | select(. != null) | {...}
+  ⚠ Container type for 'bastion_host' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_bastionhost_info
+  Detected container: bastion_host
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .bastion_host | select(. != null) | {...}
+  ⚠ Container type for 'bastion_host' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccount
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccount_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccountapplication
+  Detected container: batch_account_application
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .batch_account_application | select(. != null) | {...}
+  ⚠ Container type for 'batch_account_application' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccountapplication_info
+  Detected container: batch_account_application
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .batch_account_application | select(. != null) | {...}
+  ⚠ Container type for 'batch_account_application' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccountapplicationpackage
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_batchaccountapplicationpackage_info
+  Detected container: batch_account_application_package
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .batch_account_application_package | select(. != null) | {...}
+  ⚠ Container type for 'batch_account_application_package' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_capacityreservationgroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_capacityreservationgroup_info
+  Detected container: capacity_reservation_group
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .capacity_reservation_group | select(. != null) | {...}
+  ⚠ Container type for 'capacity_reservation_group' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_cdnendpoint
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_cdnendpoint_info
+  Detected container: cdnendpoints
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .cdnendpoints | select(. != null) | {...}
+  ⚠ Container type for 'cdnendpoints' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_cdnprofile_info
+  Detected container: cdnprofiles
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .cdnprofiles | select(. != null) | {...}
+  ⚠ Container type for 'cdnprofiles' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerinstance
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerinstance_info
+  Detected container: container_groups
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .container_groups | select(. != null) | {...}
+  ⚠ Container type for 'container_groups' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_containerregistry
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistry_info
+  Detected container: registries
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registries | select(. != null) | {...}
+  ⚠ Container type for 'registries' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_containerregistryreplication
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistryreplication_info
+  Detected container: replications
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .replications | select(. != null) | {...}
+  ⚠ Container type for 'replications' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistryscopemap
+  Detected container: scope_map
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .scope_map | select(. != null) | {...}
+  ⚠ Container type for 'scope_map' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistryscopemap_info
+  Detected container: registry_scope_maps
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registry_scope_maps | select(. != null) | {...}
+  ⚠ Container type for 'registry_scope_maps' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistrytag
+  Detected container: state
+  Detected type:      dict
+  Detection source:   name_inference
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container inferred from module name: Azure action module pattern
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistrytag_info
+  Detected container: repositories
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .repositories | select(. != null) | {...}
+  ⚠ Container type for 'repositories' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistrytoken
+  Detected container: registry_token
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registry_token | select(. != null) | {...}
+  ⚠ Container type for 'registry_token' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_containerregistrytoken_info
+  Detected container: registry_tokens
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registry_tokens | select(. != null) | {...}
+  ⚠ Container type for 'registry_tokens' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_containerregistrywebhook
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_containerregistrywebhook_info
+  Detected container: webhooks
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .webhooks | select(. != null) | {...}
+  ⚠ Container type for 'webhooks' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_cosmosdbaccount
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_cosmosdbaccount_info
+  Detected container: accounts
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .accounts | select(. != null) | {...}
+  ⚠ Container type for 'accounts' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_datafactory
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_datafactory_info
+  Detected container: datafactory
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .datafactory | select(. != null) | {...}
+  ⚠ Container type for 'datafactory' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_ddosprotectionplan_info
+  Detected container: ddosprotectionplans
+  Detected type:      list
+  Detection source:   name_inference
+  Generated query:    .ddosprotectionplans[] | {...}
+  ⚠ Container inferred from module name: UNVERIFIED Azure pattern: ddosprotectionplan (needs review)
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_dedicatedhost
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_dedicatedhost_info
+  Detected container: dedicate_hosts
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .dedicate_hosts | select(. != null) | {...}
+  ⚠ Container type for 'dedicate_hosts' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_deployment
+  Detected container: deployment
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .deployment | select(. != null) | {...}
+  ⚠ Container type for 'deployment' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_deployment_info
+  Detected container: deployments
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .deployments | select(. != null) | {...}
+  ⚠ Container type for 'deployments' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlab
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlab_info
+  Detected container: labs
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .labs | select(. != null) | {...}
+  ⚠ Container type for 'labs' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabarmtemplate_info
+  Detected container: arm_templates
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .arm_templates | select(. != null) | {...}
+  ⚠ Container type for 'arm_templates' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabartifact_info
+  Detected container: artifacts
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .artifacts | select(. != null) | {...}
+  ⚠ Container type for 'artifacts' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabartifactsource
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabartifactsource_info
+  Detected container: artifactsources
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .artifactsources | select(. != null) | {...}
+  ⚠ Container type for 'artifactsources' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabcustomimage
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabcustomimage_info
+  Detected container: custom_images
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .custom_images | select(. != null) | {...}
+  ⚠ Container type for 'custom_images' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabenvironment
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabenvironment_info
+  Detected container: environments
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .environments | select(. != null) | {...}
+  ⚠ Container type for 'environments' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabpolicy
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabpolicy_info
+  Detected container: policies
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .policies | select(. != null) | {...}
+  ⚠ Container type for 'policies' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabschedule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_devtestlabschedule_info
+  Detected container: schedules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .schedules | select(. != null) | {...}
+  ⚠ Container type for 'schedules' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabvirtualmachine
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabvirtualmachine_info
+  Detected container: virtualmachines
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtualmachines | select(. != null) | {...}
+  ⚠ Container type for 'virtualmachines' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabvirtualnetwork
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_devtestlabvirtualnetwork_info
+  Detected container: virtualnetworks
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtualnetworks | select(. != null) | {...}
+  ⚠ Container type for 'virtualnetworks' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_diskaccess
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_diskaccess_info
+  Detected container: disk_accesses
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .disk_accesses | select(. != null) | {...}
+  ⚠ Container type for 'disk_accesses' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_diskencryptionset
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_dnsrecordset
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_firewallpolicy
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_gallery
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_gallery_info
+  Detected container: galleries
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .galleries | select(. != null) | {...}
+  ⚠ Container type for 'galleries' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_galleryimage
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_galleryimage_info
+  Detected container: images
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .images | select(. != null) | {...}
+  ⚠ Container type for 'images' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_galleryimageversion
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_galleryimageversion_info
+  Detected container: versions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .versions | select(. != null) | {...}
+  ⚠ Container type for 'versions' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_hdinsightcluster
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_hdinsightcluster_info
+  Detected container: clusters
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .clusters | select(. != null) | {...}
+  ⚠ Container type for 'clusters' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_hostgroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_image
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_image_info
+  Detected container: images
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .images | select(. != null) | {...}
+  ⚠ Container type for 'images' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_imagesku_info
+  Detected container: available_skus
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .available_skus | select(. != null) | {...}
+  ⚠ Container type for 'available_skus' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_iothub
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_iothub_info
+  Detected container: azure_iothubs
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .azure_iothubs | select(. != null) | {...}
+  ⚠ Container type for 'azure_iothubs' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_iothubconsumergroup
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_ipgroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_keyvault
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_keyvaultcertificate
+  Detected container: certificates
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .certificates | select(. != null) | {...}
+  ⚠ Container type for 'certificates' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_keyvaultcertificate_info
+  Detected container: certificates
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .certificates | select(. != null) | {...}
+  ⚠ Container type for 'certificates' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_keyvaultkey
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_keyvaultkey_info
+  Detected container: keyvaults
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .keyvaults | select(. != null) | {...}
+  ⚠ Container type for 'keyvaults' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_keyvaultsecret
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_keyvaultsecret_info
+  Detected container: secrets
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .secrets | select(. != null) | {...}
+  ⚠ Container type for 'secrets' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_keyvaultsecuritydomain
+  Detected container: security_domain
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .security_domain | select(. != null) | {...}
+  ⚠ Container type for 'security_domain' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_localnetworkgateway
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_localnetworkgateway_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_lock
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_lock_info
+  Detected container: locks
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .locks | select(. != null) | {...}
+  ⚠ Container type for 'locks' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_loganalyticsworkspace
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_loganalyticsworkspace_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_manageddisk
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_managementgroup
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_mariadbconfiguration
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbconfiguration_info
+  Detected container: settings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .settings | select(. != null) | {...}
+  ⚠ Container type for 'settings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbdatabase
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbdatabase_info
+  Detected container: databases
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .databases | select(. != null) | {...}
+  ⚠ Container type for 'databases' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbfirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbfirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbserver
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mariadbserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_monitordatacollectionendpoint
+  Detected container: datacollectionendpoint
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .datacollectionendpoint | select(. != null) | {...}
+  ⚠ Container type for 'datacollectionendpoint' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_monitordatacollectionendpoint_info
+  Detected container: datacollectionendpoints
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .datacollectionendpoints | select(. != null) | {...}
+  ⚠ Container type for 'datacollectionendpoints' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_monitordatacollectionruleassociation
+  Detected container: datacollectionruleassociation
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .datacollectionruleassociation | select(. != null) | {...}
+  ⚠ Container type for 'datacollectionruleassociation' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_monitordatacollectionruleassociation_info
+  Detected container: datacollectionruleassociations
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .datacollectionruleassociations | select(. != null) | {...}
+  ⚠ Container type for 'datacollectionruleassociations' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_monitorlogprofile
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_multiplemanageddisks
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_mysqlconfiguration
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlconfiguration_info
+  Detected container: settings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .settings | select(. != null) | {...}
+  ⚠ Container type for 'settings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqldatabase
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqldatabase_info
+  Detected container: databases
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .databases | select(. != null) | {...}
+  ⚠ Container type for 'databases' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlfirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlfirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexibleconfiguration
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexibleconfiguration_info
+  Detected container: settings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .settings | select(. != null) | {...}
+  ⚠ Container type for 'settings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexibledatabase
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexibledatabase_info
+  Detected container: databases
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .databases | select(. != null) | {...}
+  ⚠ Container type for 'databases' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexiblefirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexiblefirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlflexibleserver
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_mysqlflexibleserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_mysqlserver
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_mysqlserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_natgateway
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_networkflowlog
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_networkflowlog_info
+  Detected container: flow_logs
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .flow_logs | select(. != null) | {...}
+  ⚠ Container type for 'flow_logs' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_networkinterface
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_networkinterface_info
+  Detected container: networkinterfaces
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .networkinterfaces | select(. != null) | {...}
+  ⚠ Container type for 'networkinterfaces' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_networkwatcher
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_networkwatcher_info
+  Detected container: network_watchers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .network_watchers | select(. != null) | {...}
+  ⚠ Container type for 'network_watchers' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_openshiftmanagedcluster
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_openshiftmanagedcluster_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_openshiftmanagedclusterkubeconfig_info
+  Detected container: kubeconfig
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .kubeconfig | select(. != null) | {...}
+  ⚠ Container type for 'kubeconfig' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlconfiguration
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlconfiguration_info
+  Detected container: settings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .settings | select(. != null) | {...}
+  ⚠ Container type for 'settings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqldatabase
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqldatabase_info
+  Detected container: databases
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .databases | select(. != null) | {...}
+  ⚠ Container type for 'databases' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlfirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlfirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexibleadministrator
+  Detected container: administrator
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .administrator | select(. != null) | {...}
+  ⚠ Container type for 'administrator' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_postgresqlflexibleadministrator_info
+  Detected container: admistrator
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .admistrator | select(. != null) | {...}
+  ⚠ Container type for 'admistrator' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblebackup
+  Detected container: backup
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .backup | select(. != null) | {...}
+  ⚠ Container type for 'backup' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblebackup_info
+  Detected container: backup
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .backup | select(. != null) | {...}
+  ⚠ Container type for 'backup' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexibleconfiguration_info
+  Detected container: settings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .settings | select(. != null) | {...}
+  ⚠ Container type for 'settings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexibledatabase
+  Detected container: database
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .database | select(. != null) | {...}
+  ⚠ Container type for 'database' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexibledatabase_info
+  Detected container: database
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .database | select(. != null) | {...}
+  ⚠ Container type for 'database' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblefirewallrule
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblefirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexibleserver
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_postgresqlflexibleserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint
+  Detected container: virtual_endpoint
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_endpoint | select(. != null) | {...}
+  ⚠ Container type for 'virtual_endpoint' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlflexiblevirtualendpoint_info
+  Detected container: virtual_endpoints
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_endpoints | select(. != null) | {...}
+  ⚠ Container type for 'virtual_endpoints' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlserver
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_postgresqlserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_privatednsrecordset
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_privatednszonelink
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpoint
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpoint_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpointconnection
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpointconnection_info
+  Detected container: endpoint_connection
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .endpoint_connection | select(. != null) | {...}
+  ⚠ Container type for 'endpoint_connection' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpointdnszonegroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privateendpointdnszonegroup_info
+  Detected container: groups
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .groups | select(. != null) | {...}
+  ⚠ Container type for 'groups' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privatelinkservice
+  Detected container: link_service
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .link_service | select(. != null) | {...}
+  ⚠ Container type for 'link_service' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_privatelinkservice_info
+  Detected container: link_service
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .link_service | select(. != null) | {...}
+  ⚠ Container type for 'link_service' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_proximityplacementgroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_publicipaddress
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_publicipprefix
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_publicipprefix_info
+  Detected container: publicipprefix
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .publicipprefix | select(. != null) | {...}
+  ⚠ Container type for 'publicipprefix' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_recoveryservicesvault
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_recoveryservicesvault_info
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_recoveryservicesvaultconfig
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_recoveryservicesvaultconfig_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_rediscache
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_rediscache_info
+  Detected container: rediscaches
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rediscaches | select(. != null) | {...}
+  ⚠ Container type for 'rediscaches' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_rediscachefirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_registrationassignment
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_registrationassignment_info
+  Detected container: registration_assignments
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registration_assignments | select(. != null) | {...}
+  ⚠ Container type for 'registration_assignments' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_registrationdefinition
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_registrationdefinition_info
+  Detected container: registration_definitions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .registration_definitions | select(. != null) | {...}
+  ⚠ Container type for 'registration_definitions' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_resource
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_resource_info
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_resourcegroup
+  Detected container: contains_resources
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .contains_resources | select(. != null) | {...}
+  ⚠ Container type for 'contains_resources' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_resourcehealthstates_info
+  Detected container: health_states
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .health_states | select(. != null) | {...}
+  ⚠ Container type for 'health_states' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_roleassignment
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_roleassignment_info
+  Detected container: roleassignments
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .roleassignments | select(. != null) | {...}
+  ⚠ Container type for 'roleassignments' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_roledefinition
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_roledefinition_info
+  Detected container: roledefinitions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .roledefinitions | select(. != null) | {...}
+  ⚠ Container type for 'roledefinitions' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_route
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_route_info
+  Detected container: routes
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .routes | select(. != null) | {...}
+  ⚠ Container type for 'routes' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_routetable
+  Detected container: changed
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .changed | select(. != null) | {...}
+  ⚠ Container type for 'changed' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_routetable_info
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_securitygroup
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_securitygroup_info
+  Detected container: securitygroups
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .securitygroups | select(. != null) | {...}
+  ⚠ Container type for 'securitygroups' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_servicebus
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_servicebus_info
+  Detected container: servicebuses
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servicebuses | select(. != null) | {...}
+  ⚠ Container type for 'servicebuses' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_servicebusqueue
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_servicebussaspolicy
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_servicebustopic
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_servicebustopicsubscription
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_serviceendpointpolicy
+  Detected container: serviceendpointpolicypolicy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .serviceendpointpolicypolicy | select(. != null) | {...}
+  ⚠ Container type for 'serviceendpointpolicypolicy' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_serviceendpointpolicy_info
+  Detected container: serviceendpointpolicies
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .serviceendpointpolicies | select(. != null) | {...}
+  ⚠ Container type for 'serviceendpointpolicies' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_serviceendpointpolicydefinition
+  Detected container: serviceendpointpolicydefinition
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .serviceendpointpolicydefinition | select(. != null) | {...}
+  ⚠ Container type for 'serviceendpointpolicydefinition' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_serviceendpointpolicydefinition_info
+  Detected container: serviceendpointpolicydefinitions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .serviceendpointpolicydefinitions | select(. != null) | {...}
+  ⚠ Container type for 'serviceendpointpolicydefinitions' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_snapshot
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_snapshot_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqldatabase
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqldatabase_info
+  Detected container: databases
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .databases | select(. != null) | {...}
+  ⚠ Container type for 'databases' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlelasticpool
+  Detected container: elastic_pool
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .elastic_pool | select(. != null) | {...}
+  ⚠ Container type for 'elastic_pool' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlelasticpool_info
+  Detected container: elastic_pool
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .elastic_pool | select(. != null) | {...}
+  ⚠ Container type for 'elastic_pool' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlfirewallrule
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlfirewallrule_info
+  Detected container: rules
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .rules | select(. != null) | {...}
+  ⚠ Container type for 'rules' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlmanagedinstance
+  Detected container: sql_managed_instance
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .sql_managed_instance | select(. != null) | {...}
+  ⚠ Container type for 'sql_managed_instance' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlmanagedinstance_info
+  Detected container: sql_managed_instance
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .sql_managed_instance | select(. != null) | {...}
+  ⚠ Container type for 'sql_managed_instance' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlmidatabase
+  Detected container: database
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .database | select(. != null) | {...}
+  ⚠ Container type for 'database' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlmidatabase_info
+  Detected container: database
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .database | select(. != null) | {...}
+  ⚠ Container type for 'database' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy
+  Detected container: long_term_retention_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .long_term_retention_policy | select(. != null) | {...}
+  ⚠ Container type for 'long_term_retention_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlmidblongtermretentionpolicy_info
+  Detected container: short_term_retention_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .short_term_retention_policy | select(. != null) | {...}
+  ⚠ Container type for 'short_term_retention_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy
+  Detected container: short_term_retention_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .short_term_retention_policy | select(. != null) | {...}
+  ⚠ Container type for 'short_term_retention_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlmidbshorttermretentionpolicy_info
+  Detected container: short_term_retention_policy
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .short_term_retention_policy | select(. != null) | {...}
+  ⚠ Container type for 'short_term_retention_policy' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlserver
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sqlserver_info
+  Detected container: servers
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .servers | select(. != null) | {...}
+  ⚠ Container type for 'servers' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_sshpublickey
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_sshpublickey_info
+  Detected container: ssh_keys
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .ssh_keys | select(. != null) | {...}
+  ⚠ Container type for 'ssh_keys' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_storageaccount
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_storageaccountmanagementpolicy
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_storageaccountmanagementpolicy_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_storageshare
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_storageshare_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_subnet
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_subnet_info
+  Detected container: subnets
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .subnets | select(. != null) | {...}
+  ⚠ Container type for 'subnets' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_tags
+  Detected container: tag_info
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .tag_info | select(. != null) | {...}
+  ⚠ Container type for 'tag_info' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_tags_info
+  Detected container: tag_details
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .tag_details | select(. != null) | {...}
+  ⚠ Container type for 'tag_details' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_trafficmanagerendpoint
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_trafficmanagerendpoint_info
+  Detected container: endpoints
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .endpoints | select(. != null) | {...}
+  ⚠ Container type for 'endpoints' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_trafficmanagerprofile
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_trafficmanagerprofile_info
+  Detected container: tms
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .tms | select(. != null) | {...}
+  ⚠ Container type for 'tms' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualhub
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualhub_info
+  Detected container: virtual_hubs
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_hubs | select(. != null) | {...}
+  ⚠ Container type for 'virtual_hubs' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualhubconnection
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualhubconnection_info
+  Detected container: virtual_hub_connection
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_hub_connection | select(. != null) | {...}
+  ⚠ Container type for 'virtual_hub_connection' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualmachine
+  Detected container: powerstate
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .powerstate | select(. != null) | {...}
+  ⚠ Container type for 'powerstate' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualmachine_info
+  Detected container: vms
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .vms | select(. != null) | {...}
+  ⚠ Container type for 'vms' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualmachineextension_info
+  Detected container: extensions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .extensions | select(. != null) | {...}
+  ⚠ Container type for 'extensions' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualmachinescalesetextension
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualmachinescalesetextension_info
+  Detected container: extensions
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .extensions | select(. != null) | {...}
+  ⚠ Container type for 'extensions' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualmachinescalesetinstance
+  Detected container: instances
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .instances | select(. != null) | {...}
+  ⚠ Container type for 'instances' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualmachinescalesetinstance_info
+  Detected container: instances
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .instances | select(. != null) | {...}
+  ⚠ Container type for 'instances' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualmachinesize_info
+  Detected container: sizes
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .sizes | select(. != null) | {...}
+  ⚠ Container type for 'sizes' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetwork
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetworkgateway
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetworkgateway_info
+  Detected container: virtual_network_gatways
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_network_gatways | select(. != null) | {...}
+  ⚠ Container type for 'virtual_network_gatways' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualnetworkgatewayconnection
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetworkgatewayconnection_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetworkgatewaynatrule
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualnetworkgatewaynatrule_info
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_virtualnetworkpeering
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualnetworkpeering_info
+  Detected container: vnetpeerings
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .vnetpeerings | select(. != null) | {...}
+  ⚠ Container type for 'vnetpeerings' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualwan
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_virtualwan_info
+  Detected container: virtual_wans
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .virtual_wans | select(. != null) | {...}
+  ⚠ Container type for 'virtual_wans' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vmbackuppolicy
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vmbackuppolicy_info
+  Detected container: response
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .response | select(. != null) | {...}
+  ⚠ Container type for 'response' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vmsku_info
+  Detected container: available_skus
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .available_skus | select(. != null) | {...}
+  ⚠ Container type for 'available_skus' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vmssnetworkinterface_info
+  Detected container: vmss_networkinterfaces
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .vmss_networkinterfaces | select(. != null) | {...}
+  ⚠ Container type for 'vmss_networkinterfaces' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vpnsite
+  Detected container: state
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .state | select(. != null) | {...}
+  ⚠ Container type for 'state' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_vpnsite_info
+  Detected container: vpn_sites
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .vpn_sites | select(. != null) | {...}
+  ⚠ Container type for 'vpn_sites' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_vpnsitelink_info
+  Detected container: vpn_site_links
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .vpn_site_links | select(. != null) | {...}
+  ⚠ Container type for 'vpn_site_links' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_webapp
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_webapp_info
+  Detected container: webapps
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .webapps | select(. != null) | {...}
+  ⚠ Container type for 'webapps' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_webappslot
+  Detected container: id
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .id | select(. != null) | {...}
+  ⚠ Container type for 'id' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: azure.azcollection.azure_rm_webappvnetconnection
+  Detected container: connection
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .connection | select(. != null) | {...}
+  ⚠ Container type for 'connection' inferred with low confidence
+
+Module: azure.azcollection.azure_rm_webappvnetconnection_info
+  Detected container: connection
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .connection | select(. != null) | {...}
+  ⚠ Container type for 'connection' inferred with low confidence
+
+
+==============================================================================
+HOW TO VERIFY CONTAINER TYPES
+==============================================================================
+
+1. Run the module against real infrastructure:
+   
+   ansible <host> -m <module_name> -a "<args>" -v
+   
+2. Examine the return data structure in the output:
+   
+   - If it looks like: {"resourcegroups": [{...}, {...}]}
+     → Container is 'resourcegroups', type is 'list'
+     → Query should use: .resourcegroups[] | {...}
+   
+   - If it looks like: {"state": {"id": "...", "name": "..."}}
+     → Container is 'state', type is 'dict'  
+     → Query should use: .state | select(. != null) | {...}
+
+3. Update event_query.yml if the detection was wrong:
+   
+   For lists:   .container[] | { name: .id, ... }
+   For dicts:   .container | select(. != null) | { name: .id, ... }
+
+4. Test by running an AAP job and checking indirect node counts.
+
+==============================================================================
+END OF REPORT
+==============================================================================

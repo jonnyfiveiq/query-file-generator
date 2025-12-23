@@ -421,7 +421,7 @@ vmware.vmware.vcsa_settings:
 
 vmware.vmware.vm:
   query: >-
-    .vm | select(. != null) | {
+    .power_cycled_for_update | select(. != null) | {
       name: .moid,
       canonical_facts: {
         moid: .moid

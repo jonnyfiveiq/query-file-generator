@@ -1,0 +1,380 @@
+==============================================================================
+EVENT QUERY GENERATION REPORT: community.vmware
+==============================================================================
+
+SUMMARY
+------------------------------------------------------------------------------
+Total modules analyzed:     171
+High confidence detection:  119  (explicit type in RETURN doc)
+Medium confidence:            8  (inferred from sample data)
+Low confidence:              17  (guessed - NEEDS REVIEW)
+No container detected:       27  (using generic fallback)
+
+
+==============================================================================
+HIGH CONFIDENCE DETECTIONS (no action needed)
+==============================================================================
+  vcenter_domain_user_group_info           → .domain_user_groups[]
+  vcenter_extension_info                   → .extension_info[]
+  vcenter_license                          → .licenses[]
+  vcenter_standard_key_provider            → .key_provider_clusters[]
+  vmware_all_snapshots_info                → .vmware_all_snapshots_info[]
+  vmware_category                          → .category_results
+  vmware_category_info                     → .tag_category_info[]
+  vmware_cluster_info                      → .clusters
+  vmware_content_deploy_ovf_template       → .vm_deploy_info
+  vmware_content_deploy_template           → .vm_deploy_info
+  vmware_content_library_info              → .content_lib_details[]
+  vmware_content_library_manager           → .content_library_info
+  vmware_datacenter_info                   → .datacenter_info[]
+  vmware_datastore_info                    → .datastores[]
+  vmware_datastore_maintenancemode         → .datastore_status
+  vmware_deploy_ovf                        → .instance
+  vmware_drs_group                         → .drs_group_facts
+  vmware_drs_group_info                    → .drs_group_info
+  vmware_drs_group_manager                 → .drs_group_member_info
+  vmware_drs_rule_info                     → .drs_rule_info
+  vmware_dvs_portgroup_find                → .dvs_portgroups[]
+  vmware_dvs_portgroup_info                → .dvs_portgroup_info
+  vmware_dvswitch_info                     → .distributed_virtual_switches[]
+  vmware_export_ovf                        → .instance
+  vmware_first_class_disk                  → .first_class_disk
+  vmware_first_class_disk_info             → .first_class_disks[]
+  vmware_folder_info                       → .flat_folder_info[]
+  vmware_guest                             → .instance
+  vmware_guest_boot_info                   → .vm_boot_info
+  vmware_guest_boot_manager                → .vm_boot_status
+  vmware_guest_controller                  → .disk_controller_status
+  vmware_guest_cross_vc_clone              → .vm_info
+  vmware_guest_custom_attribute_defs       → .custom_attribute_defs[]
+  vmware_guest_custom_attributes           → .custom_attributes
+  vmware_guest_customization_info          → .custom_spec_info
+  vmware_guest_disk                        → .disk_data
+  vmware_guest_disk_info                   → .guest_disk_info
+  vmware_guest_find                        → .folders[]
+  vmware_guest_info                        → .instance
+  vmware_guest_instant_clone               → .vm_info
+  vmware_guest_move                        → .instance
+  vmware_guest_network                     → .network_info[]
+  vmware_guest_screenshot                  → .screenshot_info
+  vmware_guest_sendkey                     → .sendkey_info
+  vmware_guest_serial_port                 → .serial_port_data
+  vmware_guest_snapshot                    → .snapshot_results
+  vmware_guest_snapshot_info               → .guest_snapshots
+  vmware_guest_tools_info                  → .vmtools_info
+  vmware_guest_tools_wait                  → .instance
+  vmware_guest_tpm                         → .instance
+  vmware_guest_vgpu                        → .vgpu_info
+  vmware_guest_vgpu_info                   → .vgpu_info[]
+  vmware_guest_video                       → .video_status
+  vmware_host_acceptance                   → .facts
+  vmware_host_acceptance_info              → .host_acceptance_info
+  vmware_host_active_directory             → .results
+  vmware_host_auto_start                   → .system_defaults_config
+  vmware_host_capability_info              → .hosts_capability_info
+  vmware_host_config_info                  → .hosts_info
+  vmware_host_custom_attributes            → .custom_attributes
+  vmware_host_disk_info                    → .hosts_disk_info[]
+  vmware_host_dns                          → .dns_config_result
+  vmware_host_dns_info                     → .hosts_dns_info
+  vmware_host_facts                        → .ansible_facts
+  vmware_host_feature_info                 → .hosts_feature_info
+  vmware_host_firewall_info                → .hosts_firewall_info
+  vmware_host_firewall_manager             → .rule_set_state
+  vmware_host_graphics                     → .results
+  vmware_host_hyperthreading               → .results
+  vmware_host_ipv6                         → .result
+  vmware_host_iscsi                        → .iscsi_properties
+  vmware_host_iscsi_info                   → .iscsi_properties
+  vmware_host_kernel_manager               → .host_kernel_status
+  vmware_host_lockdown                     → .results
+  vmware_host_lockdown_exceptions          → .results
+  vmware_host_logbundle_info               → .manifests[]
+  vmware_host_ntp                          → .host_ntp_status
+  vmware_host_ntp_info                     → .hosts_ntp_info
+  vmware_host_package_info                 → .hosts_package_info
+  vmware_host_passthrough                  → .passthrough_configs[]
+  vmware_host_powermgmt_policy             → .result
+  vmware_host_powerstate                   → .result
+  vmware_host_scanhba                      → .result
+  vmware_host_scsidisk_info                → .hosts_scsidisk_info
+  vmware_host_service_info                 → .host_service_info
+  vmware_host_snmp                         → .results
+  vmware_host_sriov                        → .host_sriov_diff
+  vmware_host_ssl_info                     → .host_ssl_info
+  vmware_host_tcpip_stacks                 → .default
+  vmware_host_vmhba_info                   → .hosts_vmhbas_info
+  vmware_host_vmnic_info                   → .hosts_vmnics_info
+  vmware_local_role_info                   → .local_role_info[]
+  vmware_local_user_info                   → .local_user_info
+  vmware_object_custom_attributes_info     → .custom_attributes[]
+  vmware_object_rename                     → .rename_status
+  vmware_object_role_permission_info       → .permission_info[]
+  vmware_portgroup                         → .result
+  vmware_portgroup_info                    → .hosts_portgroup_info
+  vmware_resource_pool                     → .instance
+  vmware_resource_pool_info                → .resource_pool_info[]
+  vmware_sdrs_vm_overrides_info            → .result
+  vmware_tag                               → .tag_status
+  vmware_tag_info                          → .tag_facts
+  vmware_tag_manager                       → .tag_status[]
+  vmware_vasa_info                         → .vasa_providers[]
+  vmware_vc_infraprofile_info              → .list_infra[]
+  vmware_vcenter_settings                  → .results
+  vmware_vcenter_settings_info             → .vcenter_config_info
+  vmware_vcenter_statistics                → .results
+  vmware_vm_config_option                  → .instance
+  vmware_vm_info                           → .virtual_machines[]
+  vmware_vm_shell                          → .results
+  vmware_vm_storage_policy                 → .vmware_vm_storage_policy
+  vmware_vm_storage_policy_info            → .spbm_profiles[]
+  vmware_vm_vm_drs_rule                    → .result
+  vmware_vmkernel                          → .result
+  vmware_vmkernel_info                     → .host_vmk_info
+  vmware_vsan_health_info                  → .vsan_health_info
+  vmware_vswitch_info                      → .hosts_vswitch_info
+
+==============================================================================
+MEDIUM CONFIDENCE DETECTIONS (verify if issues occur)
+==============================================================================
+  vmware_about_info                        → .about_info          (from RETURN_doc)
+  vmware_datastore_cluster_manager         → .datastore_cluster_info (from RETURN_doc)
+  vmware_dvswitch                          → .result              (from RETURN_doc)
+  vmware_dvswitch_lacp                     → .result              (from RETURN_doc)
+  vmware_dvswitch_pvlans                   → .result              (from RETURN_doc)
+  vmware_dvswitch_uplink_pg                → .result              (from RETURN_doc)
+  vmware_host_logbundle                    → .dest                (from RETURN_doc)
+  vmware_recommended_datastore             → .recommended_datastore (from RETURN_doc)
+
+==============================================================================
+LOW CONFIDENCE - MANUAL REVIEW REQUIRED
+==============================================================================
+
+The following modules have uncertain container type detection.
+Please verify the container name and type (list vs dict) are correct.
+
+Module: community.vmware.vcenter_extension
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vcenter_folder
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_cfg_backup
+  Detected container: dest_file
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .dest_file | select(. != null) | {...}
+  ⚠ Container type for 'dest_file' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_datastore
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_datastore_cluster
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_drs_override
+  Detected container: changed
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .changed | select(. != null) | {...}
+  ⚠ Container type for 'changed' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_dvswitch_nioc
+  Detected container: dvswitch_nioc_status
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .dvswitch_nioc_status | select(. != null) | {...}
+  ⚠ Container type for 'dvswitch_nioc_status' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_evc_mode
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_guest_storage_policy
+  Detected container: msg
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .msg | select(. != null) | {...}
+  ⚠ Container type for 'msg' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_host
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_host_user_manager
+  Detected container: msg
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .msg | select(. != null) | {...}
+  ⚠ Container type for 'msg' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_local_role_manager
+  Detected container: role_name
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .role_name | select(. != null) | {...}
+  ⚠ Container type for 'role_name' inferred with low confidence
+
+Module: community.vmware.vmware_maintenancemode
+  Detected container: hostsystem
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .hostsystem | select(. != null) | {...}
+  ⚠ Container type for 'hostsystem' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_object_role_permission
+  Detected container: changed
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .changed | select(. != null) | {...}
+  ⚠ Container type for 'changed' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_target_canonical_info
+  Detected container: canonical
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .canonical | select(. != null) | {...}
+  ⚠ Container type for 'canonical' inferred with low confidence
+
+Module: community.vmware.vmware_vmotion
+  Detected container: running_host
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .running_host | select(. != null) | {...}
+  ⚠ Container type for 'running_host' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+Module: community.vmware.vmware_vswitch
+  Detected container: result
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .result | select(. != null) | {...}
+  ⚠ Container type for 'result' inferred with low confidence
+  ⚠ Using fallback identifier: .id
+
+
+==============================================================================
+NO CONTAINER DETECTED - USING GENERIC FALLBACK
+==============================================================================
+
+These modules have no container detection. Using '. | select(. != null)'.
+This may or may not work depending on actual module output.
+
+  vcenter_root_password_expiration
+    ⚠ Using fallback identifier: .id
+  vmware_cluster_ha
+    ⚠ Using fallback identifier: .id
+  vmware_cluster_vsan
+    ⚠ Using fallback identifier: .id
+  vmware_custom_attribute
+    ⚠ Using fallback identifier: .id
+  vmware_custom_attribute_manager
+    ⚠ Using fallback identifier: .id
+  vmware_datacenter
+    ⚠ Using fallback identifier: .id
+  vmware_dvs_host
+    ⚠ Using fallback identifier: .id
+  vmware_dvs_portgroup
+    ⚠ Using fallback identifier: .id
+  vmware_guest_file_operation
+    ⚠ Using fallback identifier: .id
+  vmware_guest_powerstate
+    ⚠ Using fallback identifier: .id
+  vmware_guest_register_operation
+    ⚠ Using fallback identifier: .id
+  vmware_guest_tools_upgrade
+    ⚠ Using fallback identifier: .id
+  vmware_host_config_manager
+    ⚠ Using fallback identifier: .id
+  vmware_host_datastore
+    ⚠ Using fallback identifier: .id
+  vmware_host_service_manager
+    ⚠ Using fallback identifier: .id
+  vmware_local_user_manager
+    ⚠ Using fallback identifier: .id
+  vmware_migrate_vmk
+    ⚠ Using fallback identifier: .id
+  vmware_vasa
+    ⚠ Using fallback identifier: .id
+  vmware_vm_host_drs_rule
+    ⚠ Using fallback identifier: .id
+  vmware_vm_vss_dvs_migrate
+    ⚠ Using fallback identifier: .id
+  vmware_vsan_cluster
+    ⚠ Using fallback identifier: .id
+  vmware_vsan_hcl_db
+    ⚠ Using fallback identifier: .id
+  vmware_vsan_release_catalog
+    ⚠ Using fallback identifier: .id
+  vmware_vspan_session
+    ⚠ Using fallback identifier: .id
+  vsan_health_silent_checks
+    ⚠ Using fallback identifier: .id
+  vsphere_copy
+    ⚠ Using fallback identifier: .id
+  vsphere_file
+    ⚠ Using fallback identifier: .id
+
+==============================================================================
+HOW TO VERIFY CONTAINER TYPES
+==============================================================================
+
+1. Run the module against real infrastructure:
+   
+   ansible <host> -m <module_name> -a "<args>" -v
+   
+2. Examine the return data structure in the output:
+   
+   - If it looks like: {"resourcegroups": [{...}, {...}]}
+     → Container is 'resourcegroups', type is 'list'
+     → Query should use: .resourcegroups[] | {...}
+   
+   - If it looks like: {"state": {"id": "...", "name": "..."}}
+     → Container is 'state', type is 'dict'  
+     → Query should use: .state | select(. != null) | {...}
+
+3. Update event_query.yml if the detection was wrong:
+   
+   For lists:   .container[] | { name: .id, ... }
+   For dicts:   .container | select(. != null) | { name: .id, ... }
+
+4. Test by running an AAP job and checking indirect node counts.
+
+==============================================================================
+END OF REPORT
+==============================================================================

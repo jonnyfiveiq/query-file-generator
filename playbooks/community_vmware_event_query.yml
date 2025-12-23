@@ -15,7 +15,7 @@ community.vmware.vcenter_domain_user_group_info:
 
 community.vmware.vcenter_extension:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -43,7 +43,7 @@ community.vmware.vcenter_extension_info:
 
 community.vmware.vcenter_folder:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -99,7 +99,7 @@ community.vmware.vcenter_standard_key_provider:
 
 community.vmware.vmware_about_info:
   query: >-
-    . | select(. != null) | {
+    .about_info | select(. != null) | {
       name: .instance_uuid,
       canonical_facts: {
         instance_uuid: .instance_uuid
@@ -155,7 +155,7 @@ community.vmware.vmware_category_info:
 
 community.vmware.vmware_cfg_backup:
   query: >-
-    . | select(. != null) | {
+    .dest_file | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -323,7 +323,7 @@ community.vmware.vmware_datacenter_info:
 
 community.vmware.vmware_datastore:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -337,7 +337,7 @@ community.vmware.vmware_datastore:
 
 community.vmware.vmware_datastore_cluster:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -351,7 +351,7 @@ community.vmware.vmware_datastore_cluster:
 
 community.vmware.vmware_datastore_cluster_manager:
   query: >-
-    . | select(. != null) | {
+    .datastore_cluster_info | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -449,7 +449,7 @@ community.vmware.vmware_drs_group_manager:
 
 community.vmware.vmware_drs_override:
   query: >-
-    . | select(. != null) | {
+    .changed | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -533,7 +533,7 @@ community.vmware.vmware_dvs_portgroup_info:
 
 community.vmware.vmware_dvswitch:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .net_flow_observation_domain_id,
       canonical_facts: {
         id: .net_flow_observation_domain_id
@@ -561,7 +561,7 @@ community.vmware.vmware_dvswitch_info:
 
 community.vmware.vmware_dvswitch_lacp:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -575,7 +575,7 @@ community.vmware.vmware_dvswitch_lacp:
 
 community.vmware.vmware_dvswitch_nioc:
   query: >-
-    .resources_changed[] | {
+    .dvswitch_nioc_status | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -589,7 +589,7 @@ community.vmware.vmware_dvswitch_nioc:
 
 community.vmware.vmware_dvswitch_pvlans:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -603,7 +603,7 @@ community.vmware.vmware_dvswitch_pvlans:
 
 community.vmware.vmware_dvswitch_uplink_pg:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -617,7 +617,7 @@ community.vmware.vmware_dvswitch_uplink_pg:
 
 community.vmware.vmware_evc_mode:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1009,7 +1009,7 @@ community.vmware.vmware_guest_snapshot_info:
 
 community.vmware.vmware_guest_storage_policy:
   query: >-
-    .changed_policies | select(. != null) | {
+    .msg | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1121,7 +1121,7 @@ community.vmware.vmware_guest_video:
 
 community.vmware.vmware_host:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1471,7 +1471,7 @@ community.vmware.vmware_host_lockdown_exceptions:
 
 community.vmware.vmware_host_logbundle:
   query: >-
-    . | select(. != null) | {
+    .dest | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1695,7 +1695,7 @@ community.vmware.vmware_host_tcpip_stacks:
 
 community.vmware.vmware_host_user_manager:
   query: >-
-    . | select(. != null) | {
+    .msg | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1751,7 +1751,7 @@ community.vmware.vmware_local_role_info:
 
 community.vmware.vmware_local_role_manager:
   query: >-
-    .privileges[] | {
+    .role_name | select(. != null) | {
       name: .role_id,
       canonical_facts: {
         id: .role_id
@@ -1793,7 +1793,7 @@ community.vmware.vmware_local_user_manager:
 
 community.vmware.vmware_maintenancemode:
   query: >-
-    . | select(. != null) | {
+    .hostsystem | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1849,7 +1849,7 @@ community.vmware.vmware_object_rename:
 
 community.vmware.vmware_object_role_permission:
   query: >-
-    . | select(. != null) | {
+    .changed | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -1905,7 +1905,7 @@ community.vmware.vmware_portgroup_info:
 
 community.vmware.vmware_recommended_datastore:
   query: >-
-    . | select(. != null) | {
+    .recommended_datastore | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2003,7 +2003,7 @@ community.vmware.vmware_tag_manager:
 
 community.vmware.vmware_target_canonical_info:
   query: >-
-    .scsi_tgt_info | select(. != null) | {
+    .canonical | select(. != null) | {
       name: .target_lun_uuid,
       canonical_facts: {
         id: .target_lun_uuid
@@ -2241,7 +2241,7 @@ community.vmware.vmware_vmkernel_info:
 
 community.vmware.vmware_vmotion:
   query: >-
-    . | select(. != null) | {
+    .running_host | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id
@@ -2325,7 +2325,7 @@ community.vmware.vmware_vspan_session:
 
 community.vmware.vmware_vswitch:
   query: >-
-    . | select(. != null) | {
+    .result | select(. != null) | {
       name: .id,
       canonical_facts: {
         id: .id

@@ -1,0 +1,108 @@
+==============================================================================
+EVENT QUERY GENERATION REPORT: vmware.vmware
+==============================================================================
+
+SUMMARY
+------------------------------------------------------------------------------
+Total modules analyzed:     38
+High confidence detection:   34  (explicit type in RETURN doc)
+Medium confidence:            0  (inferred from sample data)
+Low confidence:               1  (guessed - NEEDS REVIEW)
+No container detected:        3  (using generic fallback)
+
+
+==============================================================================
+HIGH CONFIDENCE DETECTIONS (no action needed)
+==============================================================================
+  appliance_info                           → .appliance
+  cluster                                  → .cluster
+  cluster_dpm                              → .cluster
+  cluster_drs                              → .cluster
+  cluster_drs_recommendations              → .cluster
+  cluster_ha                               → .cluster
+  cluster_info                             → .clusters
+  cluster_vcls                             → .cluster
+  content_library_item_info                → .library_item_info[]
+  content_template                         → .template_info
+  deploy_content_library_ovf               → .vm
+  deploy_content_library_template          → .vm
+  deploy_folder_template                   → .vm
+  esxi_connection                          → .host
+  esxi_host                                → .host
+  esxi_maintenance_mode                    → .result
+  folder                                   → .folder
+  guest_info                               → .guests[]
+  license_info                             → .licenses[]
+  local_content_library                    → .library
+  subscribed_content_library               → .library
+  tag_associations                         → .added_tags[]
+  tag_categories                           → .vsphere_tag_categories
+  tags                                     → .vsphere_tags
+  vcsa_backup_schedule                     → .schedule
+  vcsa_backup_schedule_info                → .schedules[]
+  vcsa_settings                            → .vcsa_settings
+  vm_advanced_settings                     → .vm
+  vm_apply_customization                   → .vm
+  vm_list_group_by_clusters_info           → .vm_list_group_by_clusters_info
+  vm_portgroup_info                        → .vm_portgroup_info
+  vm_powerstate                            → .vm
+  vm_resource_info                         → .vms[]
+  vm_snapshot                              → .vm
+
+==============================================================================
+LOW CONFIDENCE - MANUAL REVIEW REQUIRED
+==============================================================================
+
+The following modules have uncertain container type detection.
+Please verify the container name and type (list vs dict) are correct.
+
+Module: vmware.vmware.vm
+  Detected container: power_cycled_for_update
+  Detected type:      dict
+  Detection source:   RETURN_doc
+  Generated query:    .power_cycled_for_update | select(. != null) | {...}
+  ⚠ Container type for 'power_cycled_for_update' inferred with low confidence
+
+
+==============================================================================
+NO CONTAINER DETECTED - USING GENERIC FALLBACK
+==============================================================================
+
+These modules have no container detection. Using '. | select(. != null)'.
+This may or may not work depending on actual module output.
+
+  folder_template_from_vm
+    ⚠ Using fallback identifier: .id
+  import_content_library_iso
+    ⚠ Using fallback identifier: .id
+  import_content_library_ovf
+    ⚠ Using fallback identifier: .id
+
+==============================================================================
+HOW TO VERIFY CONTAINER TYPES
+==============================================================================
+
+1. Run the module against real infrastructure:
+   
+   ansible <host> -m <module_name> -a "<args>" -v
+   
+2. Examine the return data structure in the output:
+   
+   - If it looks like: {"resourcegroups": [{...}, {...}]}
+     → Container is 'resourcegroups', type is 'list'
+     → Query should use: .resourcegroups[] | {...}
+   
+   - If it looks like: {"state": {"id": "...", "name": "..."}}
+     → Container is 'state', type is 'dict'  
+     → Query should use: .state | select(. != null) | {...}
+
+3. Update event_query.yml if the detection was wrong:
+   
+   For lists:   .container[] | { name: .id, ... }
+   For dicts:   .container | select(. != null) | { name: .id, ... }
+
+4. Test by running an AAP job and checking indirect node counts.
+
+==============================================================================
+END OF REPORT
+==============================================================================
